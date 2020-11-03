@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_camera">
+
+    <action
+        android:id="@+id/actionGlobal_toCamera"
+        app:destination="@+id/navigation_camera"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit" />
+    <action
+        android:id="@+id/actionGlobal_toEditor"
+        app:destination="@+id/navigation_editor"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit" />
+    <action
+        android:id="@+id/actionGlobal_toRuler"
+        app:destination="@+id/navigation_ruler"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit" />
+
+    <fragment
+        android:id="@+id/navigation_editor"
+        android:name="com.example.bottomnavigationactivity.ui.editor.EditorFragment"
+        android:label="@string/title_editor"
+        tools:layout="@layout/fragment_editor" />
+
+    <fragment
+        android:id="@+id/navigation_camera"
+        android:name="com.example.bottomnavigationactivity.ui.camera.CameraFragment"
+        android:label="@string/title_camera"
+        tools:layout="@layout/fragment_camera"/>
+
+    <fragment
+        android:id="@+id/navigation_ruler"
+        android:name="com.example.bottomnavigationactivity.ui.ruler.RulerFragment"
+        android:label="@string/title_ruler"
+        tools:layout="@layout/fragment_ruler" />
+</navigation>
