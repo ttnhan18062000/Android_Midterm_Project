@@ -9,17 +9,23 @@
         android:id="@+id/actionGlobal_toCamera"
         app:destination="@+id/navigation_camera"
         app:enterAnim="@anim/fragment_fade_enter"
-        app:exitAnim="@anim/fragment_fade_exit" />
+        app:exitAnim="@anim/fragment_fade_exit" 
+	    app:popUpTo="@+id/navigation_camera"
+        app:popUpToInclusive="true"/>
     <action
         android:id="@+id/actionGlobal_toEditor"
         app:destination="@+id/navigation_editor"
         app:enterAnim="@anim/fragment_fade_enter"
-        app:exitAnim="@anim/fragment_fade_exit" />
+        app:exitAnim="@anim/fragment_fade_exit" 
+	    app:popUpTo="@+id/navigation_editor"
+        app:popUpToInclusive="true"/>
     <action
         android:id="@+id/actionGlobal_toRuler"
         app:destination="@+id/navigation_ruler"
         app:enterAnim="@anim/fragment_fade_enter"
-        app:exitAnim="@anim/fragment_fade_exit" />
+        app:exitAnim="@anim/fragment_fade_exit" 
+    	app:popUpTo="@+id/navigation_ruler"
+        app:popUpToInclusive="true"/>
 
     <fragment
         android:id="@+id/navigation_editor"

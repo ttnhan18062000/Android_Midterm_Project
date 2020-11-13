@@ -27,13 +27,14 @@ public class EditorFragment extends Fragment {
     Activity mActivity = null;
     View fragmentView = null;
 
-
     View.OnClickListener onDrawShapeClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             MyPaintView paintView = (MyPaintView)fragmentView.findViewById(R.id.paintView);
+            paintView.setMoveMode(false);
             switch (v.getId())
             {
+
                 case R.id.buttonLine:
                     paintView.selectShape(0);
                     break;
@@ -49,6 +50,9 @@ public class EditorFragment extends Fragment {
                 case R.id.buttonEraser:
                     paintView.selectShape(4);
                     break;
+                case R.id.buttonMove:
+                    paintView.setMoveMode(true);
+                    break;
             }
         }
     };
@@ -61,8 +65,11 @@ public class EditorFragment extends Fragment {
         fragmentView = inflater.inflate(R.layout.fragment_editor, container, false);
         setOnClickListenerForTool(fragmentView, R.id.buttonLine,onDrawShapeClicked);
         setOnClickListenerForTool(fragmentView, R.id.buttonEraser,onDrawShapeClicked);
+        setOnClickListenerForTool(fragmentView,R.id.buttonMove,onDrawShapeClicked);
+
         setOnClickListenerForClearButton(fragmentView);
         setOnClickListenerForChooseImageButton(fragmentView);
+
         return fragmentView;
     }
 
@@ -109,10 +116,10 @@ public class EditorFragment extends Fragment {
     }
 
 
-    public void setImageBitmap(Bitmap bitmap) {
-        final ImageView imageView = fragmentView.findViewById(R.id.image);
-        imageView.setImageBitmap(bitmap);
-    }
+//    public void setImageBitmap(Bitmap bitmap) {
+//        final ImageView imageView = fragmentView.findViewById(R.id.image);
+//        imageView.setImageBitmap(bitmap);
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -123,8 +130,8 @@ public class EditorFragment extends Fragment {
             Uri targetUri = data.getData();
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(targetUri));
-                setImageBitmap(bitmap);
-
+                MyPaintView paintView = (MyPaintView)fragmentView.findViewById(R.id.paintView);
+                paintView.addBackgroundWithShapes(bitmap);
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
