@@ -1,11 +1,7 @@
 package com.example.bottomnavigationactivity.ui.camera;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,28 +23,21 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.TextureView;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,13 +48,14 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.bottomnavigationactivity.R;
+import com.example.bottomnavigationactivity.utility.MyImageSaver;
 
 import org.jetbrains.annotations.NotNull;
 
 public class CameraFragment extends Fragment {
 
     View fragmentView;
-    private static final String TAG = "AndroidCameraApi";
+    private static final String TAG = "CameraApi";
     private Button takePictureButton;
     private TextureView textureView;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
@@ -88,11 +78,6 @@ public class CameraFragment extends Fragment {
     private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
-    private  int[] sizes; // sizes = [width, height]
-
-    private CaptureRequest.Builder captureBuilder;
-    private List<Surface> outputSurfaces;
-    private ImageReader reader;
     private String IMAGE_DIR = "myPic";
 
     @Override
@@ -144,17 +129,7 @@ public class CameraFragment extends Fragment {
             //This is called when the camera is open
             Log.e(TAG, "onOpened");
             cameraDevice = camera;
-            sizes = getSizes();
             createCameraPreview();
-            reader = ImageReader.newInstance(sizes[0], sizes[1], ImageFormat.JPEG, 1);
-            outputSurfaces = getSurfaces(reader);
-            try {
-                captureBuilder = getCaptureBuilder(reader);
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-            ImageReader.OnImageAvailableListener readerListener = new MyReaderListener().invoke();
-            reader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
         }
         @Override
         public void onDisconnected(CameraDevice camera) {
@@ -193,19 +168,21 @@ public class CameraFragment extends Fragment {
 
         Long tsLong = System.currentTimeMillis();
         String ts = tsLong.toString();
-        Log.d("DEBUG!", "Call take Picture: " + ts);
+        Log.d(TAG, "Call take Picture: " + ts);
         //takePictureButton.setText("Waiting...");
         if(null == cameraDevice) {
             Log.e(TAG, "cameraDevice is null");
             return;
         }
         try {
-//            ImageReader reader = ImageReader.newInstance(sizes[0], sizes[1], ImageFormat.JPEG, 1);
-//            List<Surface> outputSurfaces = getSurfaces(reader);
-//            final CaptureRequest.Builder captureBuilder = getCaptureBuilder(reader);
-
+            int[] sizes = getSizes();
+            ImageReader reader = ImageReader.newInstance(sizes[0], sizes[1], ImageFormat.JPEG, 1);
+            List<Surface> outputSurfaces = getSurfaces(reader);
+            final CaptureRequest.Builder captureBuilder = getCaptureBuilder(reader);
             //final File file = new File(Environment.getExternalStorageDirectory()+"/pic.jpg");
             //final File file = new File(getExternalFilesDir(null)+"/pic.jpg");
+            ImageReader.OnImageAvailableListener readerListener = new MyReaderListener().invoke();
+            reader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
             createCaptureSession(outputSurfaces, captureBuilder);
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -224,7 +201,7 @@ public class CameraFragment extends Fragment {
         captureBuilder.addTarget(reader.getSurface());
         captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
         // Orientation
-        int rotation = getActivity().getWindowManager().getDefaultDisplay().getRotation();
+        int rotation = requireActivity().getWindowManager().getDefaultDisplay().getRotation();
         captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
         return captureBuilder;
     }
@@ -394,46 +371,6 @@ public class CameraFragment extends Fragment {
         super.onPause();
     }
 
-    private static File getImagesDirectory() {
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "myPic");//Environment.getExternalStorageDirectory()
-        if (!file.mkdirs() && !file.isDirectory()) {
-            Log.e("mkdir", "Directory not created");
-        }
-        return file;
-    }
-
-    public static File generateImagePath(String title, String imgType) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-        return new File(getImagesDirectory(), title + "_" + sdf.format(new Date()) + "." + imgType);
-    }
-
-    public boolean compressAndSaveImage(File file, Bitmap bitmap) {
-        boolean result = false;
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            if (result = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)) {
-                Log.w("image manager", "Compression success");
-            }
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    public Uri addImageToGallery(ContentResolver cr, String imgType, File filepath) {
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "player");
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, "player");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "");
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/" + imgType);
-        values.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis());
-        values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
-        values.put(MediaStore.Images.Media.DATA, filepath.toString());
-
-        return cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-    }
-
     private class MyReaderListener {
         public ImageReader.OnImageAvailableListener invoke() {
             return new ImageReader.OnImageAvailableListener() {
@@ -457,55 +394,9 @@ public class CameraFragment extends Fragment {
                 private void save(byte[] bytes) throws IOException {
                     Log.d(TAG, "save: ");
                     OutputStream output = null;
-                    //output = new FileOutputStream(file);
-                    //output.write(bytes);
-
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    Log.d(TAG, "save: bitmap created");
-                    File storedImagePath = generateImagePath("player", "png");
-                    Log.d(TAG, "save: generated image path");
-                    if (!compressAndSaveImage(storedImagePath, bitmap)) {
-                        Log.d(TAG, "save: Failed to compress");
-                        return;
-                    }
-                    Log.d(TAG, "save: compressed");
-                    Uri url = addImageToGallery(requireActivity().getContentResolver(), "png", storedImagePath);
-                    Log.d(TAG, "save: completed");
-//                    Log.d(TAG, "save: bitmap created");
-//                    //MediaStore.Images.Media.insertImage(requireActivity().getContentResolver(), bitmap, "ImageCaptured" , "Date");
-//                    final ContentValues contentValues = new ContentValues();
-//                    contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "Picture.jpg");
-//                    contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg");
-//                    contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
-//                    Log.d(TAG, "save: contenValue created");
-//                    final ContentResolver resolver = requireActivity().getContentResolver();
-//                    OutputStream stream = null;
-//                    Uri uri = null;
-//                    try {
-//                        uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-//                        if (uri == null) {
-//                            Log.d(TAG, "Failed to create new  MediaStore record.");
-//                            return;
-//                        }
-//                        Log.d(TAG, "save: uri created");
-//                        stream = resolver.openOutputStream(uri);
-//                        Log.d(TAG, "save: output stream created");
-//                        if (stream == null) {
-//                            Log.d(TAG, "Failed to get output stream.");
-//                        }
-//                        boolean saved = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-//                        if (!saved) {
-//                            Log.d(TAG, "Failed to save bitmap.");
-//                        }
-//                        Log.d(TAG, "save: completed");
-//                    } catch (IOException e) {
-//                        Log.d(TAG, "save: " + e.getMessage());
-//                        resolver.delete(uri, null, null);
-//                    } finally {
-//                        if (stream != null) {
-//                            stream.close();
-//                        }
-//                    }
+                    MyImageSaver.saveImage(requireActivity(), bitmap, "rulerPic", "capture");
+
                 }
             };
         }

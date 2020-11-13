@@ -105,7 +105,7 @@ public class MyPaintView extends View {
         invalidate();
     }
 
-    private int iTool = 1;
+    private int iTool = 0;
 
     private void beginDraw(float x, float y) {
         bDraw = true;
