@@ -15,10 +15,12 @@ import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,40 +29,22 @@ import com.example.bottomnavigationactivity.editor_components.MyPaintView;
 import com.example.bottomnavigationactivity.editor_components.MyRecyclerViewManagement;
 import com.example.bottomnavigationactivity.editor_components.MyTool;
 import com.example.bottomnavigationactivity.editor_components.MyToolAdapter;
+import com.example.bottomnavigationactivity.editor_components.SetRatioDialog;
+import com.example.bottomnavigationactivity.utility.MyImageManager;
 import com.example.bottomnavigationactivity.utility.MyMath;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Set;
 
-public class EditorFragment extends Fragment {
+public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioDialogListener {
 
     Activity mActivity = null;
     View fragmentView = null;
-    private int initialListToolSize = 5;
-    private int currentToolIndex = 0;
-    private int currentPosition = 0;
+    private MyPaintView myPaintView;
     private static String TAG = "EditorFragment";
-    private MyToolAdapter myToolAdapter;
-    private LinearLayoutManager linearLayoutManager;
-    ArrayList<MyTool> myToolList;
-    private boolean userScrolled = false;
     MyRecyclerViewManagement myRecyclerViewManagement;
-
-//    View.OnClickListener onScrollButtonClicked = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            RecyclerView toolrRecyclerView = fragmentView.findViewById(R.id.rv_number_list);
-//            switch (v.getId())
-//            {
-//                case R.id.btnScrollLeft:
-//                    myRecyclerViewManagement.onScrollLeft();
-//                    break;
-//                case R.id.btnScrollRight:
-//                    myRecyclerViewManagement.onScrollRight();
-//                    break;
-//            }
-//        }
-//    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,6 +57,18 @@ public class EditorFragment extends Fragment {
         setOnClickListenerForChooseImageButton(fragmentView);
         myRecyclerViewManagement = new MyRecyclerViewManagement(createToolList(), fragmentView, mActivity);
         myRecyclerViewManagement.initRecyclerView();
+        myPaintView = fragmentView.findViewById(R.id.paintView);
+        myPaintView.setOnEndDrawListener(new MyPaintView.OnEndDrawListener() {
+            @Override
+            public void onEndDraw() {
+                showEditDialog();
+            }
+        });
+        if(savedInstanceState != null)
+        {
+            ImageView imageView = fragmentView.findViewById(R.id.image);
+            imageView.setImageBitmap(MyImageManager.StringToBitMap(savedInstanceState.getString("ImageBitmap")));
+        }
         return fragmentView;
     }
 
@@ -152,5 +148,18 @@ public class EditorFragment extends Fragment {
         }
     }
 
+    private void showEditDialog() {
+        FragmentManager fm = getFragmentManager();
+        SetRatioDialog editNameDialogFragment = SetRatioDialog.newInstance();
+        // SETS the target fragment for use later when sending results
+        editNameDialogFragment.setTargetFragment(this, 300);
+        editNameDialogFragment.show(fm, "fragment_edit_name");
+    }
+
+
+    @Override
+    public void applyLength(float length) {
+        myPaintView.setRatio(length);
+    }
 
 }

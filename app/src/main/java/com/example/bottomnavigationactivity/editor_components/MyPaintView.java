@@ -1,27 +1,69 @@
 package com.example.bottomnavigationactivity.editor_components;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import com.example.bottomnavigationactivity.R;
+import com.example.bottomnavigationactivity.utility.MyMath;
 
 import java.util.ArrayList;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 
 public class MyPaintView extends View {
+    private final String TAG = "MyPaintView";
+    private final Context mActivity;
+    private float ratio;
+
+    public interface OnEndDrawListener {
+        public void onEndDraw();
+    }
+
+    private OnEndDrawListener mListener;
+
+    public void setOnEndDrawListener(OnEndDrawListener listener) {
+        mListener = listener;
+    }
+
     public MyPaintView(Context context) {
         super(context);
+        mActivity = context;
         GlobalSetting.paintView = this;
     }
 
     public MyPaintView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        mActivity = context;
         GlobalSetting.paintView = this;
+    }
+    public void setRatio(float lineLength)
+    {
+        Shape curShape = shapes.get(shapes.size()-1);
+        float pixelLength = MyMath.GetLength(curShape.P1, curShape.P2);
+        ratio = lineLength/pixelLength;
+        Log.d(TAG, "setRatio: " + String.valueOf(ratio));
     }
 
     Canvas canvas;
@@ -96,6 +138,19 @@ public class MyPaintView extends View {
     private void endDraw(float x, float y) {
         bDraw = false;
         processDraw(x,y);
+        if(iTool == MyTool.ToolType.LINE)
+        {
+            Shape curShape = shapes.get(shapes.size()-1);
+            float length = MyMath.GetLength(curShape.P1, curShape.P2);
+            Log.d(TAG, "endDraw: pixel length: " + String.valueOf(length));
+            Log.d(TAG, "endDraw: estimate length: " + String.valueOf(length*ratio));
+        }
+        else if(iTool == MyTool.ToolType.RATIO)
+        {
+            Shape curShape = shapes.get(shapes.size()-1);
+            float length = MyMath.GetLength(curShape.P1, curShape.P2);
+            mListener.onEndDraw();
+        }
         createBitmapOfCurrentShapes();
     }
 
@@ -104,8 +159,11 @@ public class MyPaintView extends View {
         curShape.process((int)x,(int)y);
         invalidate();
     }
+    private MyTool.ToolType iTool = MyTool.ToolType.LINE;
 
-    private int iTool = 0;
+    public void setTool(MyTool.ToolType toolID){
+        iTool = toolID;
+    }
 
     private void beginDraw(float x, float y) {
         bDraw = true;
@@ -114,19 +172,17 @@ public class MyPaintView extends View {
 
         Shape newShape = null;
         switch (iTool) {
-            case 0:
+            case RATIO:
+            case LINE:
                 newShape = new MyLine();
                 break;
-            case 1:
-                //newShape = new MyRectangle();
-                break;
-            case 2:
+            case TEXT:
                 //newShape = new MyEllipse();
                 break;
-            case 3:
+            case ZOOM:
                 // newShape = new MyPath();
                 break;
-            case 4:
+            case ERASER:
                 newShape = new MyEraser();
                 break;
         }
@@ -161,9 +217,5 @@ public class MyPaintView extends View {
 
     private int getCurrentScreenHeight() { return this.getMeasuredHeight(); }
     private int getCurrentScreenWidth() { return this.getMeasuredWidth();}
-
-    public void selectShape(int shapeID) {
-        iTool = shapeID;
-    }
 
 }

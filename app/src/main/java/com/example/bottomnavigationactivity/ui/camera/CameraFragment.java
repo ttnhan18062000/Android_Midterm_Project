@@ -1,5 +1,6 @@
 package com.example.bottomnavigationactivity.ui.camera;
 
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -46,9 +47,11 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bottomnavigationactivity.R;
-import com.example.bottomnavigationactivity.utility.MyImageSaver;
+import com.example.bottomnavigationactivity.ui.process.ProcessFragment;
+import com.example.bottomnavigationactivity.utility.MyImageManager;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -395,10 +398,26 @@ public class CameraFragment extends Fragment {
                     Log.d(TAG, "save: ");
                     OutputStream output = null;
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    MyImageSaver.saveImage(requireActivity(), bitmap, "rulerPic", "capture");
-
+                    Uri uri = MyImageManager.saveImage(requireActivity(), bitmap, "rulerPic", "capture");
+                    if(uri != null)
+                        openProcessFragment(uri);
+                    else
+                        Log.d(TAG, "save: failed");
                 }
             };
         }
+    }
+
+    private void openProcessFragment(Uri uri) {
+        ProcessFragment fragment = new ProcessFragment();
+        assert getFragmentManager() != null;
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Bundle arguments = new Bundle();
+        arguments.putString("ImageUri", uri.toString());
+        fragment.setArguments(arguments);
+        ft.replace(R.id.nav_host_fragment, fragment); // f1_container is your FrameLayout container
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 }

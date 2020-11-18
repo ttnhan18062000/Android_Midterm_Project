@@ -26,6 +26,7 @@ public class MyRecyclerViewManagement
     private LinearLayoutManager layoutManager;
     private boolean userScrolled = false;
     private static String TAG = "RecyclerViewManagement";
+    private MyPaintView myPaintView;
     public MyRecyclerViewManagement(ArrayList<MyTool> myToolList, View view, Context context)
     {
         this.myToolList = cloneArrayList(myToolList);
@@ -33,6 +34,7 @@ public class MyRecyclerViewManagement
         this.fragmentView = view;
         this.mActivity = context;
         recyclerView = fragmentView.findViewById(R.id.rv_number_list);
+        myPaintView = fragmentView.findViewById(R.id.paintView);
     }
 
     private ArrayList<MyTool> cloneArrayList(ArrayList<MyTool> myToolList) {
@@ -60,6 +62,7 @@ public class MyRecyclerViewManagement
                     cPosition = layoutManager.findFirstVisibleItemPosition();
                 }
                 selectedTool = myToolList.get((cPosition + 1) % myToolList.size());
+                myPaintView.setTool(selectedTool.getToolID());
                 Log.d(TAG, "onScrolled: Selected Tool: " + selectedTool.getName());
             }
             @Override
