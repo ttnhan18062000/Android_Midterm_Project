@@ -1,4 +1,4 @@
-package com.example.bottomnavigationactivity.editor_components;
+package com.example.bottomnavigationactivity.editor_components.tools;
 
 import android.graphics.Canvas;
 import android.graphics.Point;
@@ -21,8 +21,12 @@ public class Shape {
     {}
 
 
+
     public String type = null;
     public void draw(Canvas canvas) {
 
+    }
+
+    public void setMyText(String s) {
     }
 }

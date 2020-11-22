@@ -7,36 +7,26 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottomnavigationactivity.R;
-import com.example.bottomnavigationactivity.editor_components.MyPaintView;
+import com.example.bottomnavigationactivity.editor_components.tools.MyPaintView;
 import com.example.bottomnavigationactivity.editor_components.MyRecyclerViewManagement;
 import com.example.bottomnavigationactivity.editor_components.MyTool;
-import com.example.bottomnavigationactivity.editor_components.MyToolAdapter;
 import com.example.bottomnavigationactivity.editor_components.SetRatioDialog;
 import com.example.bottomnavigationactivity.utility.MyImageManager;
-import com.example.bottomnavigationactivity.utility.MyMath;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Set;
 
 public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioDialogListener {
 
@@ -45,12 +35,13 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
     private MyPaintView myPaintView;
     private static String TAG = "EditorFragment";
     MyRecyclerViewManagement myRecyclerViewManagement;
-
+  
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragmentView = inflater.inflate(R.layout.fragment_editor, container, false);
+      
 //        setOnClickListenerForTool(fragmentView, R.id.btnScrollLeft, onScrollButtonClicked);
 //        setOnClickListenerForTool(fragmentView, R.id.btnScrollRight, onScrollButtonClicked);
         setOnClickListenerForClearButton(fragmentView);
@@ -79,6 +70,7 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         tools.add(new MyTool("T", MyTool.ToolType.TEXT));
         tools.add(new MyTool("Z", MyTool.ToolType.ZOOM));
         tools.add(new MyTool("R", MyTool.ToolType.RATIO));
+        tools.add(new MyTool("M",MyTool.ToolType.MOVE));
         return tools;
     }
 
@@ -125,10 +117,10 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
     }
 
 
-    public void setImageBitmap(Bitmap bitmap) {
-        final ImageView imageView = fragmentView.findViewById(R.id.image);
-        imageView.setImageBitmap(bitmap);
-    }
+//    public void setImageBitmap(Bitmap bitmap) {
+//        final ImageView imageView = fragmentView.findViewById(R.id.image);
+//        imageView.setImageBitmap(bitmap);
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -139,8 +131,8 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
             Uri targetUri = data.getData();
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(targetUri));
-                setImageBitmap(bitmap);
-
+                MyPaintView paintView = (MyPaintView)fragmentView.findViewById(R.id.paintView);
+                paintView.addBackgroundWithShapes(bitmap);
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

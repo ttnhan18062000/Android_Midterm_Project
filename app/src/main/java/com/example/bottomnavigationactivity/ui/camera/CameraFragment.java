@@ -1,5 +1,6 @@
 package com.example.bottomnavigationactivity.ui.camera;
 
+
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.bottomnavigationactivity.MainActivity;
 import com.example.bottomnavigationactivity.R;
 import com.example.bottomnavigationactivity.ui.process.ProcessFragment;
 import com.example.bottomnavigationactivity.utility.MyImageManager;
