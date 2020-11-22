@@ -1,9 +1,11 @@
-package com.example.bottomnavigationactivity.editor_components;
+package com.example.bottomnavigationactivity.editor_components.tools;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+
+import com.example.bottomnavigationactivity.editor_components.tools.Shape;
 
 public class MyText extends Shape {
 

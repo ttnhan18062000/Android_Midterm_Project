@@ -1,4 +1,4 @@
-package com.example.bottomnavigationactivity.editor_components;
+package com.example.bottomnavigationactivity.editor_components.tools;
 
 import android.graphics.Point;
 
@@ -27,7 +27,7 @@ public class GlobalSetting {
         return (val > 0)? 1: 2; // clock or counterclock wise
     }
 
-    static boolean doIntersect(Point p1, Point q1, Point p2, Point q2)
+    public static boolean doIntersect(Point p1, Point q1, Point p2, Point q2)
     {
         // Find the four orientations needed for general and
         // special cases

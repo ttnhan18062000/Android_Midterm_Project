@@ -1,12 +1,14 @@
-package com.example.bottomnavigationactivity.editor_components;
+package com.example.bottomnavigationactivity.editor_components.tools;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 
-public class MyLine extends  Shape {
-    Paint.Style style = Paint.Style.FILL;
+import com.example.bottomnavigationactivity.editor_components.tools.Shape;
+
+public class MyLine extends Shape {
+    protected Paint.Style style = Paint.Style.FILL;
     String mText = null;
     Path mPath;
     Paint textDrawPaint;

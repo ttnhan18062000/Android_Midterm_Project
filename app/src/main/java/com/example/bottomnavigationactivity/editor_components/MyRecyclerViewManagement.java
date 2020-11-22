@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottomnavigationactivity.R;
-import com.example.bottomnavigationactivity.utility.MyMath;
+import com.example.bottomnavigationactivity.editor_components.tools.MyPaintView;
 
 import java.util.ArrayList;
 

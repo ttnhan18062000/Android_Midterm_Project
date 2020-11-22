@@ -1,8 +1,6 @@
-package com.example.bottomnavigationactivity.editor_components;
+package com.example.bottomnavigationactivity.editor_components.tools;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -11,34 +9,25 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.example.bottomnavigationactivity.R;
+import com.example.bottomnavigationactivity.editor_components.MyBitmap;
+import com.example.bottomnavigationactivity.editor_components.MyTool;
+import com.example.bottomnavigationactivity.editor_components.tools.GlobalSetting;
+import com.example.bottomnavigationactivity.editor_components.tools.MyEraser;
+import com.example.bottomnavigationactivity.editor_components.tools.MyLine;
+import com.example.bottomnavigationactivity.editor_components.tools.MyText;
+import com.example.bottomnavigationactivity.editor_components.tools.Shape;
 import com.example.bottomnavigationactivity.utility.MyMath;
-
-import com.example.bottomnavigationactivity.R;
-import com.example.bottomnavigationactivity.ui.editor.EditorFragment;
 
 import java.util.ArrayList;
 
-import static androidx.core.content.ContextCompat.getSystemService;
 
-
-public class MyPaintView extends View {
+public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
   
     private Bitmap srcBitmap;
     private boolean bMove;
@@ -70,10 +59,14 @@ public class MyPaintView extends View {
     }
     public void setRatio(float lineLength)
     {
-        Shape curShape = shapes.get(shapes.size()-1);
-        float pixelLength = MyMath.GetLength(curShape.P1, curShape.P2);
-        ratio = lineLength/pixelLength;
-        Log.d(TAG, "setRatio: " + String.valueOf(ratio));
+        if(shapes.size() != 0)
+        {
+            Shape curShape = shapes.get(shapes.size()-1);
+            float pixelLength = MyMath.GetLength(curShape.P1, curShape.P2);
+            ratio = lineLength/pixelLength;
+            Log.d(TAG, "setRatio: " + String.valueOf(ratio));
+            shapes.get(shapes.size()-1).setMyText(String.valueOf(ratio));
+        }
     }
 
     Canvas canvas;
@@ -227,7 +220,6 @@ public class MyPaintView extends View {
     private void endDraw(float x, float y) {
         bDraw = false;
         processDraw(x,y);
-        setTextForLine();
         if(iTool == MyTool.ToolType.LINE)
         {
             Shape curShape = shapes.get(shapes.size()-1);
@@ -242,12 +234,6 @@ public class MyPaintView extends View {
             mListener.onEndDraw();
         }
         createBitmapOfCurrentShapes();
-    }
-
-    private void setTextForLine() {
-        String s = "OK";
-        if(shapes.size() != 0)
-            shapes.get(shapes.size()-1).setMyText(s);
     }
 
     private void processDraw(float x, float y) {
@@ -275,19 +261,16 @@ public class MyPaintView extends View {
                 newShape = new MyLine();
                 break;
             case TEXT:
-                //newShape = new MyEllipse();
+                newShape = new MyText();
                 break;
             case ZOOM:
                 // newShape = new MyPath();
                 break;
             case ERASER:
-                newShape = new MyEraser();
+                newShape = new MyEraser(this);
                 break;
-            case 5:
+            case MOVE:
                 bMove = true;
-                break;
-            case EditorFragment.TEXT:
-                newShape = new MyText();
                 break;
         }
         newShape.P1 = new Point((int) x, (int) y);
@@ -376,6 +359,26 @@ public class MyPaintView extends View {
     }
     public void setMoveMode(boolean b) {
         bMove = b;
+    }
+
+    @Override
+    public void removeIfIntersect(Point P1, Point P2) {
+
+        if(bDraw == false)
+        {
+            int i;
+            for(i =0;i<shapes.size()-1;)
+            {
+                Shape shape = shapes.get(i);
+                if(shape.type == "Line" && GlobalSetting.doIntersect(P1,P2,shape.P1,shape.P2))
+                {
+                    shapes.remove(i);
+                }
+                else {i++;}
+            }
+            shapes.remove(i);
+            invalidate();
+        }
     }
 }
 
