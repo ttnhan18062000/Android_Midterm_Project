@@ -21,8 +21,12 @@ public class Shape {
     {}
 
 
+
     public String type = null;
     public void draw(Canvas canvas) {
 
+    }
+
+    public void setMyText(String s) {
     }
 }

@@ -78,6 +78,12 @@
                 android:text="Move"
                 android:layout_gravity="center_vertical"
                 />
+            <Button android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/buttonText"
+                android:text="Text"
+                android:layout_gravity="center_vertical"
+                />
         </LinearLayout>
     </LinearLayout>
 

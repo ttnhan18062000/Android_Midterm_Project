@@ -27,6 +27,10 @@ public class EditorFragment extends Fragment {
     Activity mActivity = null;
     View fragmentView = null;
 
+    public static final int LINE = 0;
+    public static final int ERASER = 4;
+    public static final int TEXT = 6;
+
     View.OnClickListener onDrawShapeClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -36,7 +40,7 @@ public class EditorFragment extends Fragment {
             {
 
                 case R.id.buttonLine:
-                    paintView.selectShape(0);
+                    paintView.selectShape(LINE);
                     break;
 //            case R.id.buttonRectangle:
 //                paintView.selectShape(1);
@@ -48,10 +52,13 @@ public class EditorFragment extends Fragment {
 //                paintView.selectShape(3);
 //                break;
                 case R.id.buttonEraser:
-                    paintView.selectShape(4);
+                    paintView.selectShape(ERASER);
                     break;
                 case R.id.buttonMove:
                     paintView.setMoveMode(true);
+                    break;
+                case R.id.buttonText:
+                    paintView.selectShape(TEXT);
                     break;
             }
         }
@@ -66,7 +73,7 @@ public class EditorFragment extends Fragment {
         setOnClickListenerForTool(fragmentView, R.id.buttonLine,onDrawShapeClicked);
         setOnClickListenerForTool(fragmentView, R.id.buttonEraser,onDrawShapeClicked);
         setOnClickListenerForTool(fragmentView,R.id.buttonMove,onDrawShapeClicked);
-
+        setOnClickListenerForTool(fragmentView,R.id.buttonText,onDrawShapeClicked);
         setOnClickListenerForClearButton(fragmentView);
         setOnClickListenerForChooseImageButton(fragmentView);
 

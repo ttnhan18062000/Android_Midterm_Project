@@ -4,22 +4,18 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 
 import androidx.annotation.Nullable;
 
 import com.example.bottomnavigationactivity.R;
+import com.example.bottomnavigationactivity.ui.editor.EditorFragment;
 
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 
@@ -49,11 +45,7 @@ public class MyPaintView extends View {
 //            {
 //                canvas.drawBitmap(bitmap.bitmap,bitmap.left,bitmap.top,null);
 //            }
-
-
             canvas.drawBitmap(backgroundWithShapes, 0,0, null);
-
-            //canvas.drawBitmap(showmaker,0,0,null);
             if (bDraw)
                 shapes.get(shapes.size()-1).draw(canvas);
     }
@@ -187,13 +179,19 @@ public class MyPaintView extends View {
         }
         createBitmapOfCurrentShapes();
         return true;
-
     }
 
     private void endDraw(float x, float y) {
         bDraw = false;
         processDraw(x,y);
+        setTextForLine();
         createBitmapOfCurrentShapes();
+    }
+
+    private void setTextForLine() {
+        String s = "OK";
+        if(shapes.size() != 0)
+            shapes.get(shapes.size()-1).setMyText(s);
     }
 
     private void processDraw(float x, float y) {
@@ -212,7 +210,7 @@ public class MyPaintView extends View {
 
         Shape newShape = null;
         switch (iTool) {
-            case 0:
+            case EditorFragment.LINE:
                 newShape = new MyLine();
                 break;
             case 1:
@@ -224,11 +222,14 @@ public class MyPaintView extends View {
             case 3:
                 // newShape = new MyPath();
                 break;
-            case 4:
+            case EditorFragment.ERASER:
                 newShape = new MyEraser();
                 break;
             case 5:
                 bMove = true;
+                break;
+            case EditorFragment.TEXT:
+                newShape = new MyText();
                 break;
         }
         newShape.P1 = new Point((int) x, (int) y);
