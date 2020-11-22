@@ -10,16 +10,18 @@ import com.example.bottomnavigationactivity.FloatingMenu.FloatingActionMenu;
 import com.example.bottomnavigationactivity.FloatingMenu.SubActionButton;
 import com.google.android.material.chip.Chip;
 import com.example.bottomnavigationactivity.ui.MenuLayout;
-//import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
-//import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
-//import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+import com.example.bottomnavigationactivity.editor_components.SetRatioDialog;
+import com.example.bottomnavigationactivity.ui.editor.EditorFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
+    private static int POPUPWINDOW_SET_RATIO = 203;
 
     Activity selfActivity = this;
 
@@ -89,8 +91,20 @@ public class MainActivity extends AppCompatActivity {
         return button;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-
+        if (resultCode == RESULT_OK && requestCode == POPUPWINDOW_SET_RATIO){
+            if (data != null) {
+                float ratioLength = data.getFloatExtra("ratio_length", 1f);
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("ratio_length", ratioLength);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            }
+        }
+    }
 
 
 }

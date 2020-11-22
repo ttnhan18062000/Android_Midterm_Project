@@ -24,9 +24,14 @@
         app:destination="@+id/navigation_ruler"
         app:enterAnim="@anim/fragment_fade_enter"
         app:exitAnim="@anim/fragment_fade_exit" 
-    	app:popUpTo="@+id/navigation_ruler"
+      	app:popUpTo="@+id/navigation_ruler"
         app:popUpToInclusive="true"/>
-
+    <action
+        android:id="@+id/actionGlobal_toProcess"
+        app:destination="@+id/navigation_process"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit" />
+  
     <fragment
         android:id="@+id/navigation_editor"
         android:name="com.example.bottomnavigationactivity.ui.editor.EditorFragment"
@@ -44,4 +49,10 @@
         android:name="com.example.bottomnavigationactivity.ui.ruler.RulerFragment"
         android:label="@string/title_ruler"
         tools:layout="@layout/fragment_ruler" />
+
+    <fragment
+        android:id="@+id/navigation_process"
+        android:name="com.example.bottomnavigationactivity.ui.process.ProcessFragment"
+        android:label="@string/title_process"
+        tools:layout="@layout/fragment_process" />
 </navigation>

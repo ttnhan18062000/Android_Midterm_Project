@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
+  
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -31,6 +32,6 @@
             android:gravity="top"
             android:text="Babay giveme 1 moretime~ "/>
     </com.example.bottomnavigationactivity.ui.MenuLayout>
-
-
+  
 </androidx.constraintlayout.widget.ConstraintLayout>
+  

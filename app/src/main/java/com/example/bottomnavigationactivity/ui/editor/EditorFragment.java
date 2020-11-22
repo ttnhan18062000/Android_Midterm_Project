@@ -7,77 +7,80 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottomnavigationactivity.R;
 import com.example.bottomnavigationactivity.editor_components.MyPaintView;
+import com.example.bottomnavigationactivity.editor_components.MyRecyclerViewManagement;
+import com.example.bottomnavigationactivity.editor_components.MyTool;
+import com.example.bottomnavigationactivity.editor_components.MyToolAdapter;
+import com.example.bottomnavigationactivity.editor_components.SetRatioDialog;
+import com.example.bottomnavigationactivity.utility.MyImageManager;
+import com.example.bottomnavigationactivity.utility.MyMath;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Set;
 
-public class EditorFragment extends Fragment {
+public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioDialogListener {
 
     Activity mActivity = null;
     View fragmentView = null;
-
-    public static final int LINE = 0;
-    public static final int ERASER = 4;
-    public static final int TEXT = 6;
-
-    View.OnClickListener onDrawShapeClicked = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            MyPaintView paintView = (MyPaintView)fragmentView.findViewById(R.id.paintView);
-            paintView.setMoveMode(false);
-            switch (v.getId())
-            {
-
-                case R.id.buttonLine:
-                    paintView.selectShape(LINE);
-                    break;
-//            case R.id.buttonRectangle:
-//                paintView.selectShape(1);
-//                break;
-//            case R.id.buttonEllipse:
-//                paintView.selectShape(2);
-//                break;
-//            case R.id.buttonPath:
-//                paintView.selectShape(3);
-//                break;
-                case R.id.buttonEraser:
-                    paintView.selectShape(ERASER);
-                    break;
-                case R.id.buttonMove:
-                    paintView.setMoveMode(true);
-                    break;
-                case R.id.buttonText:
-                    paintView.selectShape(TEXT);
-                    break;
-            }
-        }
-    };
-
-
+    private MyPaintView myPaintView;
+    private static String TAG = "EditorFragment";
+    MyRecyclerViewManagement myRecyclerViewManagement;
+  
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragmentView = inflater.inflate(R.layout.fragment_editor, container, false);
-        setOnClickListenerForTool(fragmentView, R.id.buttonLine,onDrawShapeClicked);
-        setOnClickListenerForTool(fragmentView, R.id.buttonEraser,onDrawShapeClicked);
-        setOnClickListenerForTool(fragmentView,R.id.buttonMove,onDrawShapeClicked);
-        setOnClickListenerForTool(fragmentView,R.id.buttonText,onDrawShapeClicked);
+      
+//        setOnClickListenerForTool(fragmentView, R.id.btnScrollLeft, onScrollButtonClicked);
+//        setOnClickListenerForTool(fragmentView, R.id.btnScrollRight, onScrollButtonClicked);
         setOnClickListenerForClearButton(fragmentView);
         setOnClickListenerForChooseImageButton(fragmentView);
-
+        myRecyclerViewManagement = new MyRecyclerViewManagement(createToolList(), fragmentView, mActivity);
+        myRecyclerViewManagement.initRecyclerView();
+        myPaintView = fragmentView.findViewById(R.id.paintView);
+        myPaintView.setOnEndDrawListener(new MyPaintView.OnEndDrawListener() {
+            @Override
+            public void onEndDraw() {
+                showEditDialog();
+            }
+        });
+        if(savedInstanceState != null)
+        {
+            ImageView imageView = fragmentView.findViewById(R.id.image);
+            imageView.setImageBitmap(MyImageManager.StringToBitMap(savedInstanceState.getString("ImageBitmap")));
+        }
         return fragmentView;
+    }
+
+    private ArrayList<MyTool> createToolList() {
+        ArrayList<MyTool> tools = new ArrayList<MyTool>();
+        tools.add(new MyTool("L", MyTool.ToolType.LINE));
+        tools.add(new MyTool("E", MyTool.ToolType.ERASER));
+        tools.add(new MyTool("T", MyTool.ToolType.TEXT));
+        tools.add(new MyTool("Z", MyTool.ToolType.ZOOM));
+        tools.add(new MyTool("R", MyTool.ToolType.RATIO));
+        return tools;
     }
 
     private void setOnClickListenerForChooseImageButton(final View fragmentView) {
@@ -145,4 +148,19 @@ public class EditorFragment extends Fragment {
             }
         }
     }
+
+    private void showEditDialog() {
+        FragmentManager fm = getFragmentManager();
+        SetRatioDialog editNameDialogFragment = SetRatioDialog.newInstance();
+        // SETS the target fragment for use later when sending results
+        editNameDialogFragment.setTargetFragment(this, 300);
+        editNameDialogFragment.show(fm, "fragment_edit_name");
+    }
+
+
+    @Override
+    public void applyLength(float length) {
+        myPaintView.setRatio(length);
+    }
+
 }
