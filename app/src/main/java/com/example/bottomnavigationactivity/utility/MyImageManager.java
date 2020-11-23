@@ -3,9 +3,12 @@ package com.example.bottomnavigationactivity.utility;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -18,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class MyImageManager {
     private static String TAG = "SaveImageUtility";
@@ -72,6 +76,7 @@ public class MyImageManager {
         Log.d(TAG, "save: compressed");
         Uri uri = addImageToGallery(context.getContentResolver(), "jpeg", storedImagePath, name);
         Log.d(TAG, "save: completed");
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(storedImagePath)));
         return uri;
     }
 
@@ -95,7 +100,7 @@ public class MyImageManager {
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
-    public static String BitMapToString(Bitmap bitmap){
+    public static String bitMapToString(Bitmap bitmap){
         ByteArrayOutputStream baos=new  ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
         byte [] b=baos.toByteArray();
@@ -103,7 +108,7 @@ public class MyImageManager {
         return temp;
     }
 
-    public static Bitmap StringToBitMap(String encodedString){
+    public static Bitmap stringToBitMap(String encodedString){
         try {
             byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
             Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
@@ -111,6 +116,36 @@ public class MyImageManager {
         } catch(Exception e) {
             e.getMessage();
             return null;
+        }
+    }
+
+    private static String getFilePath(Uri uri, ContentResolver contentResolver) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+
+        Cursor cursor = contentResolver.query(uri, projection, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(projection[0]);
+            String picturePath = cursor.getString(columnIndex); // returns null
+            cursor.close();
+            return picturePath;
+        }
+        return null;
+    }
+
+    public static void deleteImage(Uri uri, Context context)
+    {
+        String filePath = getFilePath(uri, context.getContentResolver());
+        Log.d(TAG, "deleteImage: " + filePath);
+        File fdelete = new File(filePath);
+        if (fdelete.exists()) {
+            if (fdelete.delete()) {
+                Log.d(TAG, "deleteImage: completed");
+                context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(fdelete)));
+            } else {
+                Log.d(TAG, "deleteImage: failed");
+            }
         }
     }
 }

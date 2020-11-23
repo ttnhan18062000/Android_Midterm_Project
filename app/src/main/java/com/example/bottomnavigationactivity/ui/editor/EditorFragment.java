@@ -61,13 +61,13 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         myPaintView.setOnEndDrawListener(new MyPaintView.OnEndDrawListener() {
             @Override
             public void onEndDraw() {
-                showEditDialog();
+                showSetRatioDialog();
             }
         });
         if(savedInstanceState != null)
         {
             ImageView imageView = fragmentView.findViewById(R.id.image);
-            imageView.setImageBitmap(MyImageManager.StringToBitMap(savedInstanceState.getString("ImageBitmap")));
+            imageView.setImageBitmap(MyImageManager.stringToBitMap(savedInstanceState.getString("ImageBitmap")));
         }
         return fragmentView;
     }
@@ -79,6 +79,7 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         tools.add(new MyTool("T", MyTool.ToolType.TEXT));
         tools.add(new MyTool("Z", MyTool.ToolType.ZOOM));
         tools.add(new MyTool("R", MyTool.ToolType.RATIO));
+        tools.add(new MyTool("M", MyTool.ToolType.MOVE));
         return tools;
     }
 
@@ -148,12 +149,12 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         }
     }
 
-    private void showEditDialog() {
+    private void showSetRatioDialog() {
         FragmentManager fm = getFragmentManager();
         SetRatioDialog editNameDialogFragment = SetRatioDialog.newInstance();
         // SETS the target fragment for use later when sending results
         editNameDialogFragment.setTargetFragment(this, 300);
-        editNameDialogFragment.show(fm, "fragment_edit_name");
+        editNameDialogFragment.show(fm, "fragment_set_ratio");
     }
 
 

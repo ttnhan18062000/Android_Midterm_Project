@@ -1,5 +1,6 @@
 package com.example.bottomnavigationactivity.ui.camera;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -398,7 +399,7 @@ public class CameraFragment extends Fragment {
                     Log.d(TAG, "save: ");
                     OutputStream output = null;
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    Uri uri = MyImageManager.saveImage(requireActivity(), bitmap, "rulerPic", "capture");
+                    Uri uri = MyImageManager.saveImage(requireActivity(), MyImageManager.rotateBitmap(bitmap, 90), "rulerPic", "capture");
                     if(uri != null)
                         openProcessFragment(uri);
                     else
@@ -412,6 +413,7 @@ public class CameraFragment extends Fragment {
         ProcessFragment fragment = new ProcessFragment();
         assert getFragmentManager() != null;
         FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         Bundle arguments = new Bundle();
         arguments.putString("ImageUri", uri.toString());
         fragment.setArguments(arguments);
