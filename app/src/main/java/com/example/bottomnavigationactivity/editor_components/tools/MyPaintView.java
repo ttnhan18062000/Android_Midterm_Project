@@ -14,23 +14,29 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+
 import com.example.bottomnavigationactivity.R;
+
 import com.example.bottomnavigationactivity.editor_components.MyBitmap;
 import com.example.bottomnavigationactivity.editor_components.MyTool;
 import com.example.bottomnavigationactivity.editor_components.tools.GlobalSetting;
 import com.example.bottomnavigationactivity.editor_components.tools.MyEraser;
 import com.example.bottomnavigationactivity.editor_components.tools.MyLine;
+
 import com.example.bottomnavigationactivity.editor_components.tools.MyText;
+
 import com.example.bottomnavigationactivity.editor_components.tools.Shape;
 import com.example.bottomnavigationactivity.utility.MyMath;
 
 import java.util.ArrayList;
 
 
+
 public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
   
     private Bitmap srcBitmap;
     private boolean bMove;
+
     private final String TAG = "MyPaintView";
     private final Context mActivity;
     private float ratio;
