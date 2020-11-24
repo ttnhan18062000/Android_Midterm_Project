@@ -1,38 +1,27 @@
-package com.example.bottomnavigationactivity.editor_components;
+package com.example.bottomnavigationactivity.editor_components.tools;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import com.example.bottomnavigationactivity.R;
+import com.example.bottomnavigationactivity.editor_components.MyBitmap;
+import com.example.bottomnavigationactivity.editor_components.MyTool;
+import com.example.bottomnavigationactivity.editor_components.tools.GlobalSetting;
+import com.example.bottomnavigationactivity.editor_components.tools.MyEraser;
+import com.example.bottomnavigationactivity.editor_components.tools.MyLine;
+import com.example.bottomnavigationactivity.editor_components.tools.Shape;
 import com.example.bottomnavigationactivity.utility.MyMath;
 
 import java.util.ArrayList;
-
-import static androidx.core.content.ContextCompat.getSystemService;
 
 
 public class MyPaintView extends View {

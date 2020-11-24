@@ -9,8 +9,6 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.example.bottomnavigationactivity.editor_components.GlobalSetting;
-
 public class My3DPlainView extends View {
     private Context mActivity;
     private Paint paint;
