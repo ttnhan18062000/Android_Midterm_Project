@@ -19,13 +19,7 @@ import com.example.bottomnavigationactivity.R;
 
 import com.example.bottomnavigationactivity.editor_components.MyBitmap;
 import com.example.bottomnavigationactivity.editor_components.MyTool;
-import com.example.bottomnavigationactivity.editor_components.tools.GlobalSetting;
-import com.example.bottomnavigationactivity.editor_components.tools.MyEraser;
-import com.example.bottomnavigationactivity.editor_components.tools.MyLine;
 
-import com.example.bottomnavigationactivity.editor_components.tools.MyText;
-
-import com.example.bottomnavigationactivity.editor_components.tools.Shape;
 import com.example.bottomnavigationactivity.utility.MyMath;
 
 import java.util.ArrayList;
@@ -41,8 +35,9 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
     private final Context mActivity;
     private float ratio;
 
+
     public interface OnEndDrawListener {
-        public void onEndDraw();
+        public void onEndDraw(MyTool.ToolType iTool);
     }
 
     private OnEndDrawListener mListener;
@@ -71,10 +66,18 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
             float pixelLength = MyMath.GetLength(curShape.P1, curShape.P2);
             ratio = lineLength/pixelLength;
             Log.d(TAG, "setRatio: " + String.valueOf(ratio));
-            shapes.get(shapes.size()-1).setMyText(String.valueOf(ratio));
         }
     }
 
+    public void setText(String text) {
+        if (shapes.size() != 0)
+        {
+            Shape curShape = shapes.get(shapes.size()-1);
+            curShape.setMyText(text);
+            createBitmapOfCurrentShapes();
+            invalidate();
+        }
+    }
     Canvas canvas;
 
     public ArrayList<Shape> shapes = new ArrayList<>();
@@ -147,7 +150,7 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
                     start.set(event.getX(),event.getY());
                     mode = DRAG;
                 }
-                else beginDraw(x,y);
+                else beginDraw(event);
                 break;
             }
             case MotionEvent.ACTION_POINTER_DOWN: {
@@ -162,7 +165,7 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
                     }
                 }
                 else {
-                    beginDraw(x, y);
+                    beginDraw(event);
                 }
                 break;
             }
@@ -226,20 +229,23 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
     private void endDraw(float x, float y) {
         bDraw = false;
         processDraw(x,y);
+
         if(iTool == MyTool.ToolType.LINE)
         {
             Shape curShape = shapes.get(shapes.size()-1);
             float length = MyMath.GetLength(curShape.P1, curShape.P2);
             Log.d(TAG, "endDraw: pixel length: " + String.valueOf(length));
             Log.d(TAG, "endDraw: estimate length: " + String.valueOf(length*ratio));
+            shapes.get(shapes.size()-1).setMyText(String.valueOf(ratio*length));
         }
         else if(iTool == MyTool.ToolType.RATIO)
         {
             Shape curShape = shapes.get(shapes.size()-1);
             float length = MyMath.GetLength(curShape.P1, curShape.P2);
-            mListener.onEndDraw();
         }
+        mListener.onEndDraw(iTool);
         createBitmapOfCurrentShapes();
+        invalidate();
     }
 
     private void processDraw(float x, float y) {
@@ -254,7 +260,9 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
     }
   
 
-    private void beginDraw(float x, float y) {
+    private void beginDraw(MotionEvent event) {
+        int x = (int)event.getX();
+        int y = (int)event.getY();
         bDraw = true;
         bMove = false;
         createBitmapOfCurrentShapes();
@@ -279,11 +287,14 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
                 bMove = true;
                 break;
         }
-        newShape.P1 = new Point((int) x, (int) y);
-        newShape.P2 = new Point((int) x, (int) y);
-        newShape.penColor = GlobalSetting.SelectedColor;
-        shapes.add(newShape);
-        invalidate();
+        if(bMove == false)
+        {
+            newShape.P1 = new Point((int) x, (int) y);
+            newShape.P2 = new Point((int) x, (int) y);
+            newShape.penColor = GlobalSetting.SelectedColor;
+            shapes.add(newShape);
+            invalidate();
+        }
     }
 
     Bitmap backgroundWithShapes;

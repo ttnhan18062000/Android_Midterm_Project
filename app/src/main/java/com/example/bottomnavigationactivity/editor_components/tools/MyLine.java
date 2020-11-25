@@ -5,8 +5,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 
-import com.example.bottomnavigationactivity.editor_components.tools.Shape;
-
 public class MyLine extends Shape {
     protected Paint.Style style = Paint.Style.FILL;
     String mText = null;
@@ -62,7 +60,6 @@ public class MyLine extends Shape {
 
     @Override
     public void process(int x, int y) {
-
         P2 = new Point(x,y);
     }
 }

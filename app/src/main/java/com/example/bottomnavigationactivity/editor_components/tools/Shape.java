@@ -20,8 +20,6 @@ public class Shape {
     public Shape()
     {}
 
-
-
     public String type = null;
     public void draw(Canvas canvas) {
 

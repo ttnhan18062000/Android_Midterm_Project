@@ -4,10 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 
-import com.example.bottomnavigationactivity.editor_components.tools.GlobalSetting;
-import com.example.bottomnavigationactivity.editor_components.tools.MyLine;
-import com.example.bottomnavigationactivity.editor_components.tools.Shape;
-
 public class MyEraser extends MyLine {
     public MyEraser(MyPaintView myPaintView) {
         myEraserListener = (OnMyEraserListener)myPaintView;
