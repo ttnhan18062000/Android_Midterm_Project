@@ -47,7 +47,7 @@ public class ProcessFragment extends Fragment {
                     replaceFragment(fragment);
                     break;
                 case R.id.btn_set_plain:
-                    showSetPlainDialog();
+                    //showSetPlainDialog();
                     break;
             }
         }

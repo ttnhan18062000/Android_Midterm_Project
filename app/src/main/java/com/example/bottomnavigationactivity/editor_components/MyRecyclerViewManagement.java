@@ -1,9 +1,11 @@
 package com.example.bottomnavigationactivity.editor_components;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +22,7 @@ public class MyRecyclerViewManagement
     private MyToolAdapter myToolAdapter;
     private RecyclerView recyclerView;
     private MyTool selectedTool;
+    private View selectedView;
     private View fragmentView;
     private Context mActivity;
     private ArrayList<MyTool> myToolList;
@@ -40,7 +43,7 @@ public class MyRecyclerViewManagement
     private ArrayList<MyTool> cloneArrayList(ArrayList<MyTool> myToolList) {
         ArrayList<MyTool> result = new ArrayList<MyTool>();
         for(int i = 0; i < myToolList.size(); ++i)
-            result.add(new MyTool(myToolList.get(i).getName(), myToolList.get(i).getToolID()));
+            result.add(new MyTool(myToolList.get(i).getName(), myToolList.get(i).getToolID(), myToolList.get(i).getDescribtion()));
         return result;
     }
 
@@ -62,6 +65,7 @@ public class MyRecyclerViewManagement
                     cPosition = layoutManager.findFirstVisibleItemPosition();
                 }
                 selectedTool = myToolList.get((cPosition + 1) % myToolList.size());
+                updateUIForSelectedView(cPosition + 1);
                 myPaintView.setTool(selectedTool.getToolID());
                 Log.d(TAG, "onScrolled: Selected Tool: " + selectedTool.getName());
             }
@@ -75,7 +79,7 @@ public class MyRecyclerViewManagement
 
             public void generateItemsOnLeft(){
                 for(int i = initialTools.size() - 1; i >= 0; i--){
-                    MyTool newTool = new MyTool(initialTools.get(i).getName(), initialTools.get(i).getToolID());
+                    MyTool newTool = new MyTool(initialTools.get(i).getName(), initialTools.get(i).getToolID(), initialTools.get(i).getDescribtion());
                     myToolList.add(0, newTool);
                 }
                 myToolAdapter.notifyDataSetChanged();
@@ -85,5 +89,15 @@ public class MyRecyclerViewManagement
         layoutManager.scrollToPositionWithOffset(initialTools.size()/2, 0);
         int cPosition = layoutManager.findFirstVisibleItemPosition();
         Log.d(TAG, "onScrolled Position: " + String.valueOf(cPosition));
+    }
+
+    private void updateUIForSelectedView(int pos) {
+        if(selectedView != null) {
+            TextView tv = selectedView.findViewById(R.id.tv_tool);
+            tv.setTextColor(Color.parseColor("#000000"));
+        }
+        selectedView = layoutManager.findViewByPosition(pos);
+        TextView tv = selectedView.findViewById(R.id.tv_tool);
+        tv.setTextColor(Color.parseColor("#ffffff"));
     }
 }

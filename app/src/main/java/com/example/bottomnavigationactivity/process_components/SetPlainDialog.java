@@ -26,9 +26,8 @@ public class SetPlainDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog_set_plain, null);
-        initSpinnerRatioMeasure(view);
         builder.setView(view)
-                .setTitle("Enter Length")
+                .setTitle("Set plain")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -42,14 +41,6 @@ public class SetPlainDialog extends DialogFragment {
                     }
                 });
         return builder.create();
-    }
-
-    private void initSpinnerRatioMeasure(View view) {
-        Spinner spinner = view.findViewById(R.id.spinnter_set_ratio_measure);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireActivity(),
-                R.array.ratio_measure, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
     }
 
     public static SetPlainDialog newInstance() {

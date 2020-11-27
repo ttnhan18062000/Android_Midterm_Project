@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottomnavigationactivity.R;
@@ -70,10 +73,26 @@ public class MyToolAdapter extends RecyclerView.Adapter<MyToolAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        Retrieve the data for that position.
-        MyTool tool = getItem(position);
+        final MyTool tool = getItem(position);
 //        Add the dât to the view holder
-        holder.tvNumber.setText(tool.getName());
+        holder.tvName.setText(tool.getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowUserHelpDialog(tool.getDescribtion());
+            }
+        });
     }
+
+    private void ShowUserHelpDialog(String toolDescribtion) {
+        FragmentManager fm = ((AppCompatActivity)mContext).getSupportFragmentManager();
+        UserHelpDialog editNameDialogFragment = UserHelpDialog.newInstance(toolDescribtion);
+        // SETS the target fragment for use later when sending results
+
+        //editNameDialogFragment.setTargetFragment(this, 300);
+        editNameDialogFragment.show(fm, "fragment_set_ratio");
+    }
+
 
     private MyTool getItem(int position) {
         return myToolList.get(position % initialListItemSize);
@@ -92,7 +111,7 @@ public class MyToolAdapter extends RecyclerView.Adapter<MyToolAdapter.ViewHolder
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tvNumber;
+        TextView tvName;
         /**
          * Creates a new custom view holder to hold the view to display in
          * the RecyclerView.
@@ -102,7 +121,7 @@ public class MyToolAdapter extends RecyclerView.Adapter<MyToolAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvNumber = itemView.findViewById(R.id.tv_tool);
+            tvName = itemView.findViewById(R.id.tv_tool);
         }
     }
 
