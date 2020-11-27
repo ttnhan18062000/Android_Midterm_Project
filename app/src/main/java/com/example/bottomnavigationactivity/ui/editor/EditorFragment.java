@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.bottomnavigationactivity.R;
+import com.example.bottomnavigationactivity.editor_components.SetTextDialog;
 import com.example.bottomnavigationactivity.editor_components.tools.MyPaintView;
 import com.example.bottomnavigationactivity.editor_components.MyRecyclerViewManagement;
 import com.example.bottomnavigationactivity.editor_components.MyTool;
@@ -28,7 +29,7 @@ import com.example.bottomnavigationactivity.utility.MyImageManager;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioDialogListener {
+public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioDialogListener,SetTextDialog.SetTextDialogListener {
 
     Activity mActivity = null;
     View fragmentView = null;
@@ -51,8 +52,16 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         myPaintView = fragmentView.findViewById(R.id.paintView);
         myPaintView.setOnEndDrawListener(new MyPaintView.OnEndDrawListener() {
             @Override
-            public void onEndDraw() {
-                showSetRatioDialog();
+            public void onEndDraw(MyTool.ToolType iTool) {
+                switch (iTool)
+                {
+                    case RATIO:
+                        showSetRatioDialog();
+                        break;
+                    case TEXT:
+                        showSetTextDialog();
+                        break;
+                }
             }
         });
         Bundle args = getArguments();
@@ -63,6 +72,7 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         }
         return fragmentView;
     }
+
 
     private ArrayList<MyTool> createToolList() {
         ArrayList<MyTool> tools = new ArrayList<MyTool>();
@@ -149,10 +159,22 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         editNameDialogFragment.show(fm, "fragment_set_ratio");
     }
 
+    private void showSetTextDialog() {
+        FragmentManager fm = getFragmentManager();
+        SetTextDialog editNameDialogFragment = SetTextDialog.newInstance();
+        // SETS the target fragment for use later when sending results
+        editNameDialogFragment.setTargetFragment(this, 301);
+        editNameDialogFragment.show(fm, "fragment_set_text");
+    }
+
 
     @Override
     public void applyLength(float length) {
         myPaintView.setRatio(length);
     }
 
+    @Override
+    public void applyText(String text) {
+        myPaintView.setText(text);
+    }
 }
