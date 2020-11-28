@@ -297,7 +297,13 @@ public class MenuLayout extends ConstraintLayout {
                 break;
             }
         }
-        return false;
+        if(actionMenu.isOpen())
+        {
+            actionMenu.close(true);
+            return true;
+        }
+        else
+            return false;
     }
 
 

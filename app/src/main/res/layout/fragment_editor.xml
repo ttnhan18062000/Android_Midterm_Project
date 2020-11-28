@@ -31,7 +31,9 @@
 <!--                android:src="@drawable/showmaker"-->
 <!--                />-->
 
-            <com.example.bottomnavigationactivity.editor_components.tools.MyPaintView
+
+
+            <com.example.bottomnavigationactivity.editor_components.MyPaintView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/paintView"

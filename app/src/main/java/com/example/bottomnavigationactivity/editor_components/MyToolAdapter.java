@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottomnavigationactivity.R;
+import com.example.bottomnavigationactivity.editor_components.tools.MyTool;
 
 import java.util.List;
 
@@ -82,6 +83,7 @@ public class MyToolAdapter extends RecyclerView.Adapter<MyToolAdapter.ViewHolder
                 ShowUserHelpDialog(tool.getDescribtion());
             }
         });
+
     }
 
     private void ShowUserHelpDialog(String toolDescribtion) {
