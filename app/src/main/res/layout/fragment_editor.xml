@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.editor.EditorFragment"
+    android:id="@+id/editorFragment"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/ll">
+        <com.example.bottomnavigationactivity.editor_components.ColorPickerView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/colorPicker"
+            android:layout_margin="5dp"
+            android:layout_weight="3"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_margin="5dp"
+            android:layout_height="match_parent"
+            android:id="@+id/colorPickerPreview"
+            android:layout_weight="1"
+            android:background="#000000"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_toRightOf="@id/colorPickerPreview">
+            <ImageButton
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:id="@+id/buttonClear"
+                android:src="@drawable/clear"/>
+            <ImageButton android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/buttonChooseImage"
+                android:src="@drawable/open_button_icon"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_vertical"/>/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.example.bottomnavigationactivity.editor_components.MyPaintView
+        android:id="@+id/paintView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:layout_constraintTop_toBottomOf="@+id/ll"
+        app:layout_constraintBottom_toTopOf="@+id/toolBox"
+        tools:layout_editor_absoluteX="29dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/toolBox">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_number_list"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <ImageView
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/selected_frame"
+            android:scaleType="centerInside"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
