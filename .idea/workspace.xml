@@ -11,34 +11,7 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96992888-bc0e-4d86-890c-7abcb5a96614" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/MyTool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/MyToolAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/MyToolAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/SetTextDialog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/UserHelpDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/dialog/UserHelpDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyEraser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyEraserTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyEraserTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyLineTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyLineTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyMoveTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyMoveTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyPaintView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyRatioTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyRatioTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyTextTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyTextTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyZoomTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyZoomTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/Shape.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/ui/editor/EditorFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/ui/editor/EditorFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/ui/process/ProcessFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/ui/process/ProcessFragment.java" afterDir="false" />
-    </list>
+    <list default="true" id="96992888-bc0e-4d86-890c-7abcb5a96614" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +65,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../material-range-bar" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -203,10 +176,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605705797475" />
-    <state x="977" y="208" width="390" height="573" key="#com.intellij.ide.util.MemberChooser" timestamp="1606536184042">
+    <state x="977" y="208" width="390" height="573" key="#com.intellij.ide.util.MemberChooser" timestamp="1606553214780">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="977" y="208" width="390" height="573" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606536184042" />
+    <state x="977" y="208" width="390" height="573" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606553214780" />
     <state x="689" y="304" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1604404515731">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -227,10 +200,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="473" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606398628033" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606536224058">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606569589381">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606536224058" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606569589381" />
     <state x="690" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1606276009072">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -243,50 +216,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="952" y="400" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606225220886" />
-    <state x="815" y="285" key="AndroidProcessChooserDialog" timestamp="1606405292346">
+    <state x="815" y="285" key="AndroidProcessChooserDialog" timestamp="1606569212796">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="815" y="285" key="AndroidProcessChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606405292346" />
+    <state x="815" y="285" key="AndroidProcessChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606569212796" />
     <state width="499" height="466" key="DebuggerActiveHint" timestamp="1605265721747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="499" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1605265721747" />
-    <state x="740" y="261" width="826" height="662" key="FileChooserDialogImpl" timestamp="1606491480188">
+    <state x="740" y="261" width="826" height="662" key="FileChooserDialogImpl" timestamp="1606546518037">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="261" width="826" height="662" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606491480188" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1606536868101">
+    <state x="740" y="261" width="826" height="662" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606546518037" />
+    <state width="1877" height="218" key="GridCell.Tab.0.bottom" timestamp="1606571192289">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606536868101" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1606536868101">
+    <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606571192289" />
+    <state width="1877" height="218" key="GridCell.Tab.0.center" timestamp="1606571192288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606536868101" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1606536868101">
+    <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606571192288" />
+    <state width="1877" height="218" key="GridCell.Tab.0.left" timestamp="1606571192288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606536868101" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1606536868101">
+    <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606571192288" />
+    <state width="1877" height="218" key="GridCell.Tab.0.right" timestamp="1606571192288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606536868101" />
-    <state width="1877" height="281" key="GridCell.Tab.1.bottom" timestamp="1606536866147">
+    <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606571192288" />
+    <state width="1877" height="218" key="GridCell.Tab.1.bottom" timestamp="1606571187339">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606536866147" />
-    <state width="1877" height="281" key="GridCell.Tab.1.center" timestamp="1606536866147">
+    <state width="1877" height="218" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606571187339" />
+    <state width="1877" height="218" key="GridCell.Tab.1.center" timestamp="1606571187339">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606536866147" />
-    <state width="1877" height="281" key="GridCell.Tab.1.left" timestamp="1606536866146">
+    <state width="1877" height="218" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606571187339" />
+    <state width="1877" height="218" key="GridCell.Tab.1.left" timestamp="1606571187338">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606536866146" />
-    <state width="1877" height="281" key="GridCell.Tab.1.right" timestamp="1606536866147">
+    <state width="1877" height="218" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606571187338" />
+    <state width="1877" height="218" key="GridCell.Tab.1.right" timestamp="1606571187339">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606536866147" />
+    <state width="1877" height="218" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606571187339" />
     <state x="775" y="454" key="ReplaceDuplicatesPrompt" timestamp="1605097975135">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -295,10 +268,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1605265701813" />
-    <state x="848" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1606531240336">
+    <state x="848" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1606568542743">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="848" y="236" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606531240336" />
+    <state x="848" y="236" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606568542743" />
     <state x="737" y="260" width="540" height="497" key="extract.method.dialog" timestamp="1606383184407">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -311,47 +284,31 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606400566864" />
-    <state x="623" y="225" width="672" height="160" key="search.everywhere.popup" timestamp="1606534132666">
+    <state x="623" y="225" width="672" height="160" key="search.everywhere.popup" timestamp="1606550855258">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606534132666" />
+    <state x="623" y="225" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606550855258" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/GlobalSetting.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/MainActivity.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
-        <watch expression="bDraw" language="JAVA" />
-        <watch expression="shapes" language="JAVA" />
-        <watch expression="event.getX(0)" language="JAVA" />
-        <watch expression="event.getX(1)" language="JAVA" />
-        <watch expression="bitmaps" language="JAVA" />
-        <watch expression="findViewById(R.id.nav_host_fragment)" language="JAVA" custom="com.example.bottomnavigationactivity.R" />
-        <watch expression="myButton" language="JAVA" />
-        <watch expression="mHeaderView" language="JAVA" />
-        <watch expression="((FloatingActionButton)mHeaderView).contentView" custom="com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton" />
-        <watch expression="((FloatingActionButton)mHeaderView).mContext" custom="com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton" />
-        <watch expression="mHeaderView.getLayoutParams()" language="JAVA" />
-        <watch expression="getWidth()" language="JAVA" />
-        <watch expression="mHeaderView.getMeasuredHeight()" language="JAVA" />
+        <watch expression="drawables" language="JAVA" />
       </configuration>
       <configuration name="Remote">
-        <watch expression="shapes" language="JAVA" />
-        <watch expression="iTool" language="JAVA" />
-        <watch expression="bMove" language="JAVA" />
-        <watch expression="bitmaps" language="JAVA" />
-        <watch expression="bitmaps.get(0)" language="JAVA" custom="android.media.MediaMetadataRetriever" />
-        <watch expression="start" language="JAVA" />
-        <watch expression="bitmaps.get(0)" language="JAVA" custom="android.media.MediaMetadataRetriever" />
-        <watch expression="backgroundWithShapes" language="JAVA" />
-        <watch expression="dm" language="JAVA" />
+        <watch expression="drawables" language="JAVA" />
+        <watch expression="bmp.getWidth()" language="JAVA" />
+        <watch expression="getMeasuredWidth()" language="JAVA" />
+        <watch expression="scale" language="JAVA" />
+        <watch expression="getHeight()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
