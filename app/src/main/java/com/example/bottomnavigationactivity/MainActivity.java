@@ -9,11 +9,7 @@ import android.widget.ImageView;
 import com.example.bottomnavigationactivity.FloatingMenu.FloatingActionButton;
 import com.example.bottomnavigationactivity.FloatingMenu.FloatingActionMenu;
 import com.example.bottomnavigationactivity.FloatingMenu.SubActionButton;
-import com.google.android.material.chip.Chip;
 import com.example.bottomnavigationactivity.ui.MenuLayout;
-import com.example.bottomnavigationactivity.editor_components.SetRatioDialog;
-import com.example.bottomnavigationactivity.ui.editor.EditorFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import androidx.annotation.Nullable;

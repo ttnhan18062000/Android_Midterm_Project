@@ -19,16 +19,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.bottomnavigationactivity.R;
-import com.example.bottomnavigationactivity.editor_components.tools.MyPaintView;
+import com.example.bottomnavigationactivity.editor_components.dialog.SetTextDialog;
+import com.example.bottomnavigationactivity.editor_components.MyPaintView;
 import com.example.bottomnavigationactivity.editor_components.MyRecyclerViewManagement;
-import com.example.bottomnavigationactivity.editor_components.MyTool;
-import com.example.bottomnavigationactivity.editor_components.SetRatioDialog;
+import com.example.bottomnavigationactivity.editor_components.tools.MyEraserTool;
+import com.example.bottomnavigationactivity.editor_components.tools.MyLineTool;
+import com.example.bottomnavigationactivity.editor_components.tools.MyMoveTool;
+import com.example.bottomnavigationactivity.editor_components.tools.MyRatioTool;
+import com.example.bottomnavigationactivity.editor_components.tools.MyTextTool;
+import com.example.bottomnavigationactivity.editor_components.tools.MyTool;
+import com.example.bottomnavigationactivity.editor_components.dialog.SetRatioDialog;
+import com.example.bottomnavigationactivity.editor_components.tools.MyZoomTool;
 import com.example.bottomnavigationactivity.utility.MyImageManager;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioDialogListener {
+public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioDialogListener,SetTextDialog.SetTextDialogListener {
 
     Activity mActivity = null;
     View fragmentView = null;
@@ -51,26 +58,35 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         myPaintView = fragmentView.findViewById(R.id.paintView);
         myPaintView.setOnEndDrawListener(new MyPaintView.OnEndDrawListener() {
             @Override
-            public void onEndDraw() {
-                showEditDialog();
+            public void onEndDraw(MyTool.ToolType iTool) {
+                switch (iTool)
+                {
+                    case RATIO:
+                        showSetRatioDialog();
+                        break;
+                    case TEXT:
+                        showSetTextDialog();
+                        break;
+                }
             }
         });
         if(savedInstanceState != null)
         {
             ImageView imageView = fragmentView.findViewById(R.id.image);
-            imageView.setImageBitmap(MyImageManager.StringToBitMap(savedInstanceState.getString("ImageBitmap")));
+            imageView.setImageBitmap(MyImageManager.stringToBitMap(savedInstanceState.getString("ImageBitmap")));
         }
         return fragmentView;
     }
 
+
     private ArrayList<MyTool> createToolList() {
         ArrayList<MyTool> tools = new ArrayList<MyTool>();
-        tools.add(new MyTool("L", MyTool.ToolType.LINE));
-        tools.add(new MyTool("E", MyTool.ToolType.ERASER));
-        tools.add(new MyTool("T", MyTool.ToolType.TEXT));
-        tools.add(new MyTool("Z", MyTool.ToolType.ZOOM));
-        tools.add(new MyTool("R", MyTool.ToolType.RATIO));
-        tools.add(new MyTool("M",MyTool.ToolType.MOVE));
+        tools.add(new MyLineTool("L", MyTool.ToolType.LINE));
+        tools.add(new MyEraserTool("E", MyTool.ToolType.ERASER));
+        tools.add(new MyTextTool("T", MyTool.ToolType.TEXT));
+        tools.add(new MyZoomTool("Z", MyTool.ToolType.ZOOM));
+        tools.add(new MyRatioTool("R", MyTool.ToolType.RATIO));
+        tools.add(new MyMoveTool("M", MyTool.ToolType.MOVE));
         return tools;
     }
 
@@ -111,10 +127,10 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         });
     }
 
-    private void setOnClickListenerForTool(View v,int buttonID, View.OnClickListener onClickListener) {
-        Button button = v.findViewById(buttonID);
-        button.setOnClickListener(onClickListener);
-    }
+//    private void setOnClickListenerForTool(View v,int buttonID, View.OnClickListener onClickListener) {
+//        Button button = v.findViewById(buttonID);
+//        button.setOnClickListener(onClickListener);
+//    }
 
 
 //    public void setImageBitmap(Bitmap bitmap) {
@@ -140,12 +156,20 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         }
     }
 
-    private void showEditDialog() {
+    private void showSetRatioDialog() {
         FragmentManager fm = getFragmentManager();
         SetRatioDialog editNameDialogFragment = SetRatioDialog.newInstance();
         // SETS the target fragment for use later when sending results
         editNameDialogFragment.setTargetFragment(this, 300);
-        editNameDialogFragment.show(fm, "fragment_edit_name");
+        editNameDialogFragment.show(fm, "fragment_set_ratio");
+    }
+
+    private void showSetTextDialog() {
+        FragmentManager fm = getFragmentManager();
+        SetTextDialog editNameDialogFragment = SetTextDialog.newInstance();
+        // SETS the target fragment for use later when sending results
+        editNameDialogFragment.setTargetFragment(this, 301);
+        editNameDialogFragment.show(fm, "fragment_set_text");
     }
 
 
@@ -154,4 +178,8 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         myPaintView.setRatio(length);
     }
 
+    @Override
+    public void applyText(String text) {
+        myPaintView.setText(text);
+    }
 }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottomnavigationactivity.R;
-import com.example.bottomnavigationactivity.editor_components.tools.MyPaintView;
+import com.example.bottomnavigationactivity.editor_components.tools.MyTool;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,8 @@ public class MyRecyclerViewManagement
     private MyPaintView myPaintView;
     public MyRecyclerViewManagement(ArrayList<MyTool> myToolList, View view, Context context)
     {
-        this.myToolList = cloneArrayList(myToolList);
+        //this.myToolList = cloneArrayList(myToolList);
+        this.myToolList = (ArrayList<MyTool>)myToolList.clone();
         this.initialTools = myToolList;
         this.fragmentView = view;
         this.mActivity = context;
@@ -62,7 +63,7 @@ public class MyRecyclerViewManagement
                     cPosition = layoutManager.findFirstVisibleItemPosition();
                 }
                 selectedTool = myToolList.get((cPosition + 1) % myToolList.size());
-                myPaintView.setTool(selectedTool.getToolID());
+                myPaintView.setTool(selectedTool);
                 Log.d(TAG, "onScrolled: Selected Tool: " + selectedTool.getName());
             }
             @Override

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Bottom_Navigation_Activity.iml" filepath="$PROJECT_DIR$/.idea/modules/Bottom_Navigation_Activity.iml" group="Bottom_Navigation_Activity" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Bottom Navigation Activity/app" />
+    </modules>
+  </component>
+</project>

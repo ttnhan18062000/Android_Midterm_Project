@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottomnavigationactivity.R;
+import com.example.bottomnavigationactivity.editor_components.tools.MyTool;
 
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class MyToolAdapter extends RecyclerView.Adapter<MyToolAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        Retrieve the data for that position.
         MyTool tool = getItem(position);
-//        Add the dât to the view holder
+//        Add the data to the view holder
         holder.tvNumber.setText(tool.getName());
     }
 

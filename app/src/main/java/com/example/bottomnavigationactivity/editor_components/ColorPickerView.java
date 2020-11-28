@@ -11,7 +11,6 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.example.bottomnavigationactivity.R;
-import com.example.bottomnavigationactivity.editor_components.tools.GlobalSetting;
 
 public class ColorPickerView extends View {
 
