@@ -5,4 +5,7 @@ public class MyZoomTool extends MyTool {
 
     }
 
+    public MyZoomTool(String name, ToolType toolID, String describtion) {
+        super(name, toolID, describtion);
+    }
 }

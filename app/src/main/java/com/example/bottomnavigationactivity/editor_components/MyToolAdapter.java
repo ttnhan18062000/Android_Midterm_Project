@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottomnavigationactivity.R;
+import com.example.bottomnavigationactivity.editor_components.dialog.UserHelpDialog;
 import com.example.bottomnavigationactivity.editor_components.tools.MyTool;
 
 import java.util.List;

@@ -86,19 +86,19 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
     private ArrayList<MyTool> createToolList() {
         ArrayList<MyTool> tools = new ArrayList<MyTool>();
 
-//        tools.add(new MyTool("L", MyTool.ToolType.LINE, "this is a line drawing tool"));
-//        tools.add(new MyTool("E", MyTool.ToolType.ERASER, "this is a eraser tool"));
-//        tools.add(new MyTool("T", MyTool.ToolType.TEXT, "this is a text noting tool"));
-//        tools.add(new MyTool("Z", MyTool.ToolType.ZOOM, "this is a zomming tool"));
-//        tools.add(new MyTool("R", MyTool.ToolType.RATIO, "this is a setting ratio tool"));
-//        tools.add(new MyTool("M", MyTool.ToolType.MOVE, "move move move move"));
+        tools.add(new MyLineTool("L", MyTool.ToolType.LINE, "this is a line drawing tool"));
+        tools.add(new MyEraserTool("E", MyTool.ToolType.ERASER, "this is a eraser tool"));
+        tools.add(new MyTextTool("T", MyTool.ToolType.TEXT, "this is a text noting tool"));
+        tools.add(new MyZoomTool("Z", MyTool.ToolType.ZOOM, "this is a zomming tool"));
+        tools.add(new MyRatioTool("R", MyTool.ToolType.RATIO, "this is a setting ratio tool"));
+        tools.add(new MyMoveTool("M", MyTool.ToolType.MOVE, "move move move move"));
 
-        tools.add(new MyLineTool("L", MyTool.ToolType.LINE));
-        tools.add(new MyEraserTool("E", MyTool.ToolType.ERASER));
-        tools.add(new MyTextTool("T", MyTool.ToolType.TEXT));
-        tools.add(new MyZoomTool("Z", MyTool.ToolType.ZOOM));
-        tools.add(new MyRatioTool("R", MyTool.ToolType.RATIO));
-        tools.add(new MyMoveTool("M", MyTool.ToolType.MOVE));
+//        tools.add(new MyLineTool("L", MyTool.ToolType.LINE));
+//        tools.add(new MyEraserTool("E", MyTool.ToolType.ERASER));
+//        tools.add(new MyTextTool("T", MyTool.ToolType.TEXT));
+//        tools.add(new MyZoomTool("Z", MyTool.ToolType.ZOOM));
+//        tools.add(new MyRatioTool("R", MyTool.ToolType.RATIO));
+//        tools.add(new MyMoveTool("M", MyTool.ToolType.MOVE));
 
         return tools;
     }

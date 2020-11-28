@@ -6,5 +6,7 @@ public class MyMoveTool extends MyTool {
 
     }
 
-
+    public MyMoveTool(String name, ToolType toolID, String describtion) {
+        super(name, toolID, describtion);
+    }
 }

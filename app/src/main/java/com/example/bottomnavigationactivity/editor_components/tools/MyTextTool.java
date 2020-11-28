@@ -7,6 +7,10 @@ public class MyTextTool extends MyTool {
         super(name, toolID);
     }
 
+    public MyTextTool(String name, ToolType toolID, String describtion) {
+        super(name, toolID, describtion);
+    }
+
     public MyTextTool() {
 
     }

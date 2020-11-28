@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bottomnavigationactivity.R;
-import com.example.bottomnavigationactivity.editor_components.SetRatioDialog;
 import com.example.bottomnavigationactivity.process_components.SetPlainDialog;
 import com.example.bottomnavigationactivity.ui.camera.CameraFragment;
 import com.example.bottomnavigationactivity.ui.editor.EditorFragment;

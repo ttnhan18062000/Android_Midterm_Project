@@ -14,6 +14,10 @@ public class MyEraserTool extends MyTool {
         super(name, toolID);
     }
 
+    public MyEraserTool(String name, ToolType toolID, String describtion) {
+        super(name, toolID, describtion);
+    }
+
     public MyEraserTool() {
 
     }

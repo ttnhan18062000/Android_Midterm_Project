@@ -13,8 +13,8 @@ public class MyLineTool extends MyTool {
         super(name, toolID);
     }
 
-    public MyLineTool() {
-
+    public MyLineTool(String l, ToolType line, String s) {
+        super(l,line,s);
     }
     public MyLineTool(MyPaintView myPaintView) {
         super(myPaintView);
