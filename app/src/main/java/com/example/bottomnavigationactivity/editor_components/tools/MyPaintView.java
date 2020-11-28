@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
-import android.graphics.PointF;
+
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -16,9 +16,10 @@ import androidx.annotation.Nullable;
 
 
 import com.example.bottomnavigationactivity.R;
-
-import com.example.bottomnavigationactivity.editor_components.MyBitmap;
-import com.example.bottomnavigationactivity.editor_components.MyTool;
+import com.example.bottomnavigationactivity.editor_components.GlobalSetting;
+import com.example.bottomnavigationactivity.editor_components.shape.MyBitmap;
+import com.example.bottomnavigationactivity.editor_components.shape.MyLine;
+import com.example.bottomnavigationactivity.editor_components.shape.MyShape;
 
 import com.example.bottomnavigationactivity.utility.MyMath;
 
@@ -26,14 +27,37 @@ import java.util.ArrayList;
 
 
 
-public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
+public class MyPaintView extends View  implements MyTool.ToolListener{
   
     private Bitmap srcBitmap;
-    private boolean bMove;
+    private boolean notDrawTool;
+
 
     private final String TAG = "MyPaintView";
     private final Context mActivity;
     private float ratio;
+
+    private MyTool currentTool;
+
+    @Override
+    public boolean getBDraw() {
+        return bDraw;
+    }
+
+    @Override
+    public void setBDraw(boolean bDraw) {
+        this.bDraw = bDraw;
+    }
+
+    @Override
+    public void onEndDraw(MyTool.ToolType iTool) {
+        mListener.onEndDraw(iTool);
+    }
+
+    @Override
+    public void addShape(MyShape myLine) {
+        drawables.add(myLine);
+    }
 
 
     public interface OnEndDrawListener {
@@ -43,7 +67,7 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
     private OnEndDrawListener mListener;
 
     public void setOnEndDrawListener(OnEndDrawListener listener) {
-        mListener = listener;
+            mListener = listener;
     }
   
 
@@ -60,9 +84,10 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
     }
     public void setRatio(float lineLength)
     {
-        if(shapes.size() != 0)
+        if(currentDrawableIndex != -1)
         {
-            Shape curShape = shapes.get(shapes.size()-1);
+            MyLine curShape = (MyLine) drawables.get(currentDrawableIndex);
+
             float pixelLength = MyMath.GetLength(curShape.P1, curShape.P2);
             ratio = lineLength/pixelLength;
             Log.d(TAG, "setRatio: " + String.valueOf(ratio));
@@ -70,9 +95,9 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
     }
 
     public void setText(String text) {
-        if (shapes.size() != 0)
+        if (currentDrawableIndex != -1)
         {
-            Shape curShape = shapes.get(shapes.size()-1);
+            MyLine curShape = (MyLine) drawables.get(currentDrawableIndex);
             curShape.setMyText(text);
             createBitmapOfCurrentShapes();
             invalidate();
@@ -80,7 +105,9 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
     }
     Canvas canvas;
 
-    public ArrayList<Shape> shapes = new ArrayList<>();
+
+    public ArrayList<MyShape> drawables = new ArrayList<>();
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -92,37 +119,24 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
 //            }
             canvas.drawBitmap(backgroundWithShapes, 0,0, null);
             if (bDraw)
-                shapes.get(shapes.size()-1).draw(canvas);
-    }
+                if(currentDrawableIndex != -1)
+                    drawables.get(currentDrawableIndex).draw(canvas);
+        }
         else {
-            drawShapesOnCanvas(canvas);
+            drawDrawablesOnCanvas(canvas);
         }
 //        super.onDraw(canvas);
     }
 
-    private void drawShapesOnCanvas(Canvas canvas) {
-        for (int i = 0; i < shapes.size(); i++)
-            shapes.get(i).draw(canvas);
-    }
 
-    public boolean isBDraw() {
-        return bDraw;
+    private void drawDrawablesOnCanvas(Canvas canvas) {
+        for (int i = 0; i < drawables.size(); i++)
+            drawables.get(i).draw(canvas);
     }
 
     private boolean bDraw = false;
-    private  Bitmap bitmap = null;
-    private Bitmap savedBitmap = null;
-    static final int NONE = 0;
-    static final int DRAG = 1;
-    static final int ZOOM = 2;
-    private int mode = NONE;
+    int currentDrawableIndex = -1;
 
-    PointF start = new PointF();
-
-    Rect savedRect = new Rect();
-    PointF mid = new PointF();
-    Float oldDist;
-    int selectedBitmapIndex = -1;
 
 
     @Override
@@ -139,108 +153,52 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
         float x = event.getX();
         float y = event.getY();
         switch (maskedAction) {
-
             case MotionEvent.ACTION_DOWN:
-            {
-                if(bMove)
-                {
-                    selectedBitmapIndex = getIntersecBitmap(event);
-                    if(selectedBitmapIndex == -1)
-                        break;
-                    start.set(event.getX(),event.getY());
-                    mode = DRAG;
-                }
-                else beginDraw(event);
+                currentTool.OnActionDown(event);
                 break;
-            }
-            case MotionEvent.ACTION_POINTER_DOWN: {
-                // TODO use data
-                if(bMove) {
-                    oldDist = spacing(event);
-                    if (oldDist > 5f && selectedBitmapIndex != -1)
-                    {
-                        savedRect.set(bitmaps.get(selectedBitmapIndex).getRect());
-                        midPoint(mid, event);
-                        mode = ZOOM;
-                    }
-                }
-                else {
-                    beginDraw(event);
-                }
-                break;
-            }
+            case MotionEvent.ACTION_POINTER_DOWN:
+                currentTool.OnActionPointerDown(event);
             case MotionEvent.ACTION_MOVE: { // a pointer was moved
                 // TODO use data
-                if(bMove)
-                {
-                    int newX = (int)(event.getX() - start.x);
-                    int newY = (int)(event.getY() - start.y);
-                    if(selectedBitmapIndex == -1)
-                        break;
-                    MyBitmap mbm = bitmaps.get(selectedBitmapIndex);
-                    if (mode == DRAG)
-                    {
-                        int left = mbm.left + newX;
-                        int top = mbm.top + newY;
-                        int right = mbm.right + newX;
-                        int bottom = mbm.bottom + newY;
-                        bitmaps.get(selectedBitmapIndex).setBitmapRect(left,top,right,bottom);
-                        start.set(event.getX(),event.getY());
-                    }
-                    else if (mode == ZOOM)
-                    {
-                        // pinch zooming
-                        float newDist = spacing(event);
-                        if (newDist > 5f)
-                        {
-                            float scale = newDist/oldDist;
-
-                            int left = (int)(mid.x + scale*(savedRect.left-mid.x));
-                            int top = (int)(mid.y + scale*(savedRect.top-mid.y));
-                            int right =  (int)(mid.x + scale*(savedRect.right-mid.x));
-                            int bottom = (int)(mid.y + scale*(savedRect.bottom-mid.y));
-                            bitmaps.get(selectedBitmapIndex).setBitmapRect(left,top,right,bottom);
-                        }
-                    }
-                    createBitmapOfCurrentShapes();
-                    invalidate();
-                }
-                else if (bDraw)
-                    processDraw(x, y);
+                currentTool.OnActionMove(event);
+                if (bDraw)
+                    processDraw(event);
                 break;
             }
             case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_POINTER_UP: {
-                mode = NONE;
-                if (bDraw)
-                    endDraw(x, y);
+                currentTool.OnActionUp(event);
                 break;
-            }
-            case MotionEvent.ACTION_CANCEL: {
-                // TODO use data
+            case MotionEvent.ACTION_POINTER_UP:
+                currentTool.OnActionPointerUp(event);
                 break;
-            }
+            case MotionEvent.ACTION_CANCEL:
+                break;
 
         }
         createBitmapOfCurrentShapes();
+        invalidate();
         return true;
     }
 
-    private void endDraw(float x, float y) {
-        bDraw = false;
-        processDraw(x,y);
+    public void setTool(MyTool selectedTool){
+        currentTool = selectedTool;
+        currentTool.setToolListener(this);
+    }
 
+    private void endDraw(MotionEvent event) {
+        bDraw = false;
+        processDraw(event);
         if(iTool == MyTool.ToolType.LINE)
         {
-            Shape curShape = shapes.get(shapes.size()-1);
+            MyLine curShape = (MyLine) drawables.get(currentDrawableIndex);
             float length = MyMath.GetLength(curShape.P1, curShape.P2);
             Log.d(TAG, "endDraw: pixel length: " + String.valueOf(length));
             Log.d(TAG, "endDraw: estimate length: " + String.valueOf(length*ratio));
-            shapes.get(shapes.size()-1).setMyText(String.valueOf(ratio*length));
+            curShape.setMyText(String.valueOf(ratio*length));
         }
         else if(iTool == MyTool.ToolType.RATIO)
         {
-            Shape curShape = shapes.get(shapes.size()-1);
+            MyLine curShape = (MyLine) drawables.get(currentDrawableIndex);
             float length = MyMath.GetLength(curShape.P1, curShape.P2);
         }
         mListener.onEndDraw(iTool);
@@ -248,86 +206,82 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
         invalidate();
     }
 
-    private void processDraw(float x, float y) {
-        Shape curShape = shapes.get(shapes.size()-1);
-        curShape.process((int)x,(int)y);
-        invalidate();
-    }
-    private MyTool.ToolType iTool = MyTool.ToolType.LINE;
-  
-    public void setTool(MyTool.ToolType toolID){
-        iTool = toolID;
-    }
-  
 
-    private void beginDraw(MotionEvent event) {
-        int x = (int)event.getX();
-        int y = (int)event.getY();
-        bDraw = true;
-        bMove = false;
-        createBitmapOfCurrentShapes();
-
-        Shape newShape = null;
-        switch (iTool) {
-            
-            case RATIO:
-            case LINE:
-                newShape = new MyLine();
-                break;
-            case TEXT:
-                newShape = new MyText();
-                break;
-            case ZOOM:
-                // newShape = new MyPath();
-                break;
-            case ERASER:
-                newShape = new MyEraser(this);
-                break;
-            case MOVE:
-                bMove = true;
-                break;
-        }
-        if(bMove == false)
+    private void processDraw(MotionEvent event) {
+        if(currentDrawableIndex != -1)
         {
-            newShape.P1 = new Point((int) x, (int) y);
-            newShape.P2 = new Point((int) x, (int) y);
-            newShape.penColor = GlobalSetting.SelectedColor;
-            shapes.add(newShape);
+            MyShape curShape = drawables.get(currentDrawableIndex);
+            curShape.process(event);
             invalidate();
         }
     }
 
+
+    private MyTool.ToolType iTool = MyTool.ToolType.LINE;
+  
+
+//    private void beginDraw(MotionEvent event) {
+//        bDraw = true;
+//        MyShape newDrawable = new MyShape();
+//        switch (iTool) {
+//            case RATIO:
+//            case LINE:
+//                newDrawable = new MyLine();
+//                break;
+//            case TEXT:
+//                newDrawable = new MyText();
+//                break;
+//            case ZOOM:
+//
+//                break;
+//            case ERASER:
+//                newDrawable = new MyEraser(this);
+//                break;
+//            case MOVE:
+//                currentDrawableIndex = getIntersecBitmap(event);
+//                if(currentDrawableIndex == -1)
+//                    break;
+//                else
+//                    newDrawable = drawables.get(currentDrawableIndex);
+//                break;
+//        }
+//        if(newDrawable!=null)
+//        {
+//            if(newDrawable.startDraw(event))
+//            {
+//                drawables.add(newDrawable);
+//                currentDrawableIndex = drawables.size() - 1;
+//            }
+//        }
+//        createBitmapOfCurrentShapes();
+//        invalidate();
+//    }
+
     Bitmap backgroundWithShapes;
     Bitmap showmaker = BitmapFactory.decodeResource(getResources(), R.drawable.showmaker);
-    ArrayList<MyBitmap> bitmaps = new ArrayList<>();
+
     Bitmap pickedBitmap = null;
 
     private void createBitmapOfCurrentShapes() {
+
         backgroundWithShapes = Bitmap.createBitmap(getCurrentScreenWidth(), getCurrentScreenHeight(), Bitmap.Config.ARGB_8888);
 
         canvas = new Canvas(backgroundWithShapes);
-        if(bitmaps.size() != 0 )
-            for(MyBitmap mb : bitmaps)
-            {
-                Rect source = new Rect(0,0,mb.bitmap.getWidth()-1,mb.bitmap.getHeight()-1);
-                Rect target = new Rect(mb.left,mb.top,mb.right,mb.bottom);
-                canvas.drawBitmap(mb.bitmap,source,target,null);
-            }
-
         //canvas.drawBitmap(showmaker,0,0,null);
         //canvas.drawARGB(0, 255, 255, 255);
-        drawShapesOnCanvas(canvas);
+        drawDrawablesOnCanvas(canvas);
     }
 
     public void addBackgroundWithShapes(Bitmap bitmap){
-        bitmaps.add(new MyBitmap(bitmap));
+        MyBitmap myBitmap = new MyBitmap(bitmap);
+        drawables.add(new MyBitmap(bitmap));
         createBitmapOfCurrentShapes();
     }
 
     public void clear()
     {
         backgroundWithShapes = null;
-        shapes.clear();
+        drawables.clear();
         createBitmapOfCurrentShapes();
         invalidate();
     }
@@ -335,35 +289,14 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
 
     private int getCurrentScreenHeight() { return this.getMeasuredHeight(); }
     private int getCurrentScreenWidth() { return this.getMeasuredWidth();}
-    
-    private float spacing(MotionEvent event)
-    {
-        float x = event.getX(0) - event.getX(1);
-        float y = event.getY(0) - event.getY(1);
-        return (float) Math.sqrt(x * x + y * y);
-    }
-
-    /*
-     * --------------------------------------------------------------------------
-     * Method: midPoint Parameters: PointF object, MotionEvent Returns: void
-     * Description: calculates the midpoint between the two fingers
-     * ------------------------------------------------------------
-     */
-
-    private void midPoint(PointF point, MotionEvent event)
-    {
-        float x = event.getX(0) + event.getX(1);
-        float y = event.getY(0) + event.getY(1);
-        point.set(x / 2, y / 2);
-    }
 
     private int getIntersecBitmap(MotionEvent event)
     {
         int x = (int) event.getX();
         int y = (int)event.getY();
-        for(int i = bitmaps.size() -1 ; i>=0;i--)
+        for(int i = drawables.size() -1 ; i>=0;i--)
         {
-            if(intersec(bitmaps.get(i).getRect(),x,y))
+            if(drawables.get(i).getClass() == MyBitmap.class&&intersec(((MyBitmap)drawables.get(i)).getRect(),x,y))
                 return i;
         }
         return -1;
@@ -374,26 +307,22 @@ public class MyPaintView extends View  implements MyEraser.OnMyEraserListener{
             return true;
         return false;
     }
-    public void setMoveMode(boolean b) {
-        bMove = b;
-    }
-
     @Override
     public void removeIfIntersect(Point P1, Point P2) {
 
         if(bDraw == false)
         {
             int i;
-            for(i =0;i<shapes.size()-1;)
+            for(i =0;i< drawables.size()-1;)
             {
-                Shape shape = shapes.get(i);
-                if(shape.type == "Line" && GlobalSetting.doIntersect(P1,P2,shape.P1,shape.P2))
+                MyShape shape = drawables.get(i);
+                if(GlobalSetting.doIntersect(P1,P2,shape))
                 {
-                    shapes.remove(i);
+                    drawables.remove(i);
                 }
                 else {i++;}
             }
-            shapes.remove(i);
+            drawables.remove(i);
             invalidate();
         }
     }
