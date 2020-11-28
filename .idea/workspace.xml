@@ -11,13 +11,16 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96992888-bc0e-4d86-890c-7abcb5a96614" name="Default Changelist" comment="" />
+    <list default="true" id="96992888-bc0e-4d86-890c-7abcb5a96614" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/editor_components/tools/MyTool.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_30" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="JUC4C18709004938" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -65,26 +68,26 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Android_Midterm_Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.bottomnavigationactivity.editor_components.tools" />
+      <recent name="com.example.bottomnavigationactivity.editor_components" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.bottomnavigationactivity.editor_components" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Heova\AndroidStudioProjects\BottomNavigationActivity\app\src\main\res\values" />
       <recent name="C:\Users\Heova\AndroidStudioProjects\BottomNavigationActivity\app\src\main\java\com\example\bottomnavigationactivity\FloatingMenu" />
       <recent name="C:\Users\Heova\AndroidStudioProjects\BottomNavigationActivity\app\src\main\java\com\example\bottomnavigationactivity\FloatingMenu\animation" />
       <recent name="C:\Users\Heova\AndroidStudioProjects\BottomNavigationActivity\app\src\main\res\drawable" />
       <recent name="C:\Users\Heova\AndroidStudioProjects\BottomNavigationActivity\app\src\main\java\com\example\bottomnavigationactivity\editor_components" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.example.bottomnavigationactivity.editor_components" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.example.bottomnavigationactivity.editor_components.tools" />
-      <recent name="com.example.bottomnavigationactivity.editor_components" />
     </key>
   </component>
   <component name="RunManager">
@@ -188,10 +191,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="445" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606033096175" />
-    <state x="663" y="378" width="597" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606398588439">
+    <state x="663" y="378" width="602" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606533306659">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="663" y="378" width="597" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1606398588439" />
+    <state x="663" y="378" width="602" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1606533306659" />
     <state x="748" y="350" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog" timestamp="1606273662324">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -200,10 +203,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="473" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606398628033" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604408071921">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606534367215">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604408071921" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606534367215" />
     <state x="690" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1606276009072">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -284,10 +287,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606400566864" />
-    <state x="623" y="225" width="672" height="160" key="search.everywhere.popup" timestamp="1606225902657">
+    <state x="623" y="225" width="672" height="160" key="search.everywhere.popup" timestamp="1606534132666">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606225902657" />
+    <state x="623" y="225" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606534132666" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

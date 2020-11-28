@@ -43,10 +43,23 @@ public class MyTool {
     protected String name;
     protected ToolType toolID;
     private int icon;
+    private String describtion;
 
     public MyTool(String name, ToolType toolID) {
         this.name = name;
         this.toolID = toolID;
+    }
+
+     public MyTool(String name,
+                   ToolType toolID, String describtion){
+        this.name = name;
+        this.toolID = toolID;
+        this.describtion = describtion;
+    }
+
+
+    public String getDescribtion() {
+        return describtion;
     }
 
     public void setToolListener(MyPaintView toolListener)
