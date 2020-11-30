@@ -68,9 +68,9 @@ public class MyRecyclerViewManagement
                     layoutManager.scrollToPositionWithOffset(initialTools.size() + 1, 0);
                     cPosition = layoutManager.findFirstVisibleItemPosition();
                 }
-                selectedTool = myToolList.get((cPosition + 1) % myToolList.size());
+                selectedTool = myToolList.get((cPosition + 2) % myToolList.size());
 
-                updateUIForSelectedView(cPosition + 1);
+                updateUIForSelectedView(cPosition + 2);
                 //myPaintView.setTool(selectedTool.getToolID());
                 myPaintView.setTool(selectedTool);
 

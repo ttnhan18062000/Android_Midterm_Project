@@ -17,6 +17,7 @@ import androidx.customview.widget.ViewDragHelper;
 
 //import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.example.bottomnavigationactivity.FloatingMenu.FloatingActionMenu;
+import com.example.bottomnavigationactivity.R;
 
 public class MenuLayout extends ConstraintLayout {
 
@@ -47,6 +48,7 @@ public class MenuLayout extends ConstraintLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
     }
+
 
 
 

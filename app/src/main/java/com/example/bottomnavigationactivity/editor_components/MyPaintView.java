@@ -232,7 +232,13 @@ public class MyPaintView extends View  implements MyTool.ToolListener{
     public void addBackgroundWithShapes(Bitmap bitmap){
         MyBitmap myBitmap = new MyBitmap(bitmap);
         drawables.add(new MyBitmap(bitmap));
-        //createBitmapOfCurrentShapes();
+        try{
+            createBitmapOfCurrentShapes();
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 
     public void clear()
