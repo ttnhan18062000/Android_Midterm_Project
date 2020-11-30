@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Navigation Activity</string>
+    <string name="app_name">SMeasure</string>
     <string name="title_camera">Camera</string>
     <string name="title_editor">Editor</string>
     <string name="title_ruler">Ruler</string>
@@ -16,8 +16,8 @@
         <item>@drawable/line_tool_icon</item>
         <item>@drawable/eraser_tool_icon</item>
         <item>@drawable/text_tool_icon</item>
-        <item>@drawable/zoom_tool_icon</item>
-        <item>@drawable/menu_icon</item>
+        <item>@drawable/ratio_tool_icon</item>
         <item>@drawable/move_tool_icon</item>
+        <item>@drawable/zoom_tool_icon</item>
     </integer-array>
 </resources>

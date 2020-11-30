@@ -21,6 +21,19 @@ public class ColorPickerView extends View {
 
     private Bitmap bmp = null;
     ImageView ivColorPreview = null;
+    OnColorSelectListener mListener = null;
+
+    public interface OnColorSelectListener
+    {
+        public void onColorSelect(int Color);
+    }
+
+    public void setOnColorSelectListener(OnColorSelectListener mListener)
+    {
+        this.mListener = mListener;
+    }
+
+
     public ColorPickerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
@@ -62,13 +75,10 @@ public class ColorPickerView extends View {
         switch (maskedAction) {
 
             case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_POINTER_DOWN: {
+            case MotionEvent.ACTION_POINTER_DOWN:
+                case MotionEvent.ACTION_MOVE: { // a pointer was moved
                 // TODO use data
                 getColorAtTouch(x, y);
-                break;
-            }
-            case MotionEvent.ACTION_MOVE: { // a pointer was moved
-                // TODO use data
                 break;
             }
             case MotionEvent.ACTION_UP:
@@ -87,13 +97,9 @@ public class ColorPickerView extends View {
 
     private void getColorAtTouch(float x, float y) {
         try {
-            if(ivColorPreview == null) {
-                ivColorPreview = findViewById(R.id.colorPickerPreview);
-            }
             int selColor = bmp.getPixel((int)x, (int)y);
             GlobalSetting.SelectedColor = selColor;
-            ivColorPreview.setBackgroundColor(selColor);
-            ivColorPreview.postInvalidate();
+            mListener.onColorSelect(selColor);
         }
         catch (Exception e)
         {};

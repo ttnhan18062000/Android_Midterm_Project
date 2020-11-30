@@ -35,15 +35,9 @@ public class ProcessFragment extends Fragment {
                     replaceFragment(fragment);
                     break;
                 case R.id.btn_process:
-                    fragment = new EditorFragment();
-                    Bundle arguments = new Bundle();
 
-                    long start = System.currentTimeMillis();
-                    arguments.putString("ImageBitmap", MyImageManager.bitMapToString(bitmap));
-                    long end = System.currentTimeMillis();
-                    Log.d("Timing: ", String.valueOf(end-start));
-                    fragment.setArguments(arguments);
-                    replaceFragment(fragment);
+                    //arguments.putString("ImageBitmap", MyImageManager.bitMapToString(bitmap));
+                    openEditorFragment(imageUri);
                     break;
                 case R.id.btn_discard:
                     fragment = new CameraFragment();
@@ -56,6 +50,20 @@ public class ProcessFragment extends Fragment {
             }
         }
     };
+
+    private void openEditorFragment(Uri imageUri) {
+        EditorFragment fragment = new EditorFragment();
+        assert getFragmentManager() != null;
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        Bundle arguments = new Bundle();
+        arguments.putString("ImageUri", imageUri.toString());
+        fragment.setArguments(arguments);
+        ft.replace(R.id.nav_host_fragment, fragment); // f1_container is your FrameLayout container
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 
     private void showSetPlainDialog() {
         FragmentManager fm = getFragmentManager();

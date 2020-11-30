@@ -32,6 +32,7 @@ import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.TextureView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +61,7 @@ public class CameraFragment extends Fragment {
 
     View fragmentView;
     private static final String TAG = "CameraApi";
-    private Button takePictureButton;
+    private ImageButton takePictureButton;
     private TextureView textureView;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     static {
@@ -98,7 +99,7 @@ public class CameraFragment extends Fragment {
         textureView = (TextureView)fragmentView. findViewById(R.id.texture);
         assert textureView != null;
         textureView.setSurfaceTextureListener(textureListener);
-        takePictureButton = (Button) fragmentView.findViewById(R.id.btn_takepicture);
+        takePictureButton = (ImageButton) fragmentView.findViewById(R.id.btn_takepicture);
         assert takePictureButton != null;
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override

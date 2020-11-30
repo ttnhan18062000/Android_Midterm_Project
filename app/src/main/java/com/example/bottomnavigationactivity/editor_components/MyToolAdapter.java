@@ -92,7 +92,6 @@ public class MyToolAdapter extends RecyclerView.Adapter<MyToolAdapter.ViewHolder
                 ShowUserHelpDialog(tool.getDescribtion());
             }
         });
-
     }
 
     private void ShowUserHelpDialog(String toolDescribtion) {

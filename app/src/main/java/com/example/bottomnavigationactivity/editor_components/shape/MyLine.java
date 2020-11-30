@@ -41,9 +41,9 @@ public class MyLine extends LinearShape {
         }
         mPath.moveTo(start.x,start.y);
         mPath.lineTo(end.x,end.y);
-        int hOffset = (int) Math.sqrt((P1.x - P2.x)*(P1.x - P2.x) + (P1.y - P2.y)* (P1.y - P2.y))/2 - mText.length()/2*30;
-        if(hOffset < 0 )
-            hOffset = 0;
+        int hOffset = (int) (Math.sqrt((P1.x - P2.x)*(P1.x - P2.x) + (P1.y - P2.y)* (P1.y - P2.y))/2 - (float)mText.length()/2*30);
+//        if(hOffset < 0 )
+//            hOffset = 0;
         int vOffset = 50;
         canvas.drawTextOnPath(mText,mPath,hOffset,vOffset,textDrawPaint);
     }

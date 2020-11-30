@@ -21,10 +21,12 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.bottomnavigationactivity.R;
 
+import com.example.bottomnavigationactivity.editor_components.ColorPickerView;
 import com.example.bottomnavigationactivity.editor_components.dialog.SetTextDialog;
 import com.example.bottomnavigationactivity.editor_components.MyPaintView;
 
 import com.example.bottomnavigationactivity.editor_components.MyRecyclerViewManagement;
+import com.example.bottomnavigationactivity.editor_components.shape.MyBitmap;
 import com.example.bottomnavigationactivity.editor_components.tools.MyEraserTool;
 import com.example.bottomnavigationactivity.editor_components.tools.MyLineTool;
 import com.example.bottomnavigationactivity.editor_components.tools.MyMoveTool;
@@ -43,8 +45,12 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
     Activity mActivity = null;
     View fragmentView = null;
     private MyPaintView myPaintView;
+    ImageView ivColorPreview;
+    Bitmap bitmapFromCamera = null;
+    ColorPickerView mColorPickerView;
     private static String TAG = "EditorFragment";
     MyRecyclerViewManagement myRecyclerViewManagement;
+    ColorPickerView.OnColorSelectListener onColorSelectListener;
   
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +65,15 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         myRecyclerViewManagement = new MyRecyclerViewManagement(createToolList(), fragmentView, mActivity);
         myRecyclerViewManagement.initRecyclerView();
         myPaintView = fragmentView.findViewById(R.id.paintView);
+        ivColorPreview = fragmentView.findViewById(R.id.colorPickerPreview);
+        mColorPickerView = fragmentView.findViewById(R.id.colorPicker);
+        mColorPickerView.setOnColorSelectListener(new ColorPickerView.OnColorSelectListener() {
+            @Override
+            public void onColorSelect(int Color) {
+                ivColorPreview.setBackgroundColor(Color);
+            }
+
+        });
         myPaintView.setOnEndDrawListener(new MyPaintView.OnEndDrawListener() {
             @Override
             public void onEndDraw(MyTool.ToolType iTool) {
@@ -76,20 +91,27 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         Bundle args = getArguments();
         if(args != null)
         {
-            ImageView imageView = fragmentView.findViewById(R.id.image);
-            imageView.setImageBitmap(MyImageManager.stringToBitMap(args.getString("ImageBitmap")));
-
+            Uri imageUri = Uri.parse(args.getString("ImageUri"));
+            bitmapFromCamera = MyImageManager.loadImage(requireActivity(), imageUri);
         }
         return fragmentView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(bitmapFromCamera != null) {
+            MyPaintView paintView = fragmentView.findViewById(R.id.paintView);
+            paintView.addBackgroundWithShapes(bitmapFromCamera);
+            bitmapFromCamera = null;
+        }
+    }
 
     private ArrayList<MyTool> createToolList() {
         ArrayList<MyTool> tools = new ArrayList<MyTool>();
         tools.add(new MyLineTool("L", MyTool.ToolType.LINE, "this is a line drawing tool"));
         tools.add(new MyEraserTool("E", MyTool.ToolType.ERASER, "this is a eraser tool"));
         tools.add(new MyTextTool("T", MyTool.ToolType.TEXT, "this is a text noting tool"));
-        tools.add(new MyZoomTool("Z", MyTool.ToolType.ZOOM, "this is a zomming tool"));
         tools.add(new MyRatioTool("R", MyTool.ToolType.RATIO, "this is a setting ratio tool"));
         tools.add(new MyMoveTool("M", MyTool.ToolType.MOVE, "move move move move"));
 

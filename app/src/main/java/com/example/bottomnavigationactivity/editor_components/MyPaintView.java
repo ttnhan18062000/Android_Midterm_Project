@@ -215,8 +215,13 @@ public class MyPaintView extends View  implements MyTool.ToolListener{
     Bitmap backgroundWithShapes;
 
     private void createBitmapOfCurrentShapes() {
+        try{
+            backgroundWithShapes = Bitmap.createBitmap(getCurrentScreenWidth(), getCurrentScreenHeight(), Bitmap.Config.ARGB_8888);
+        }
+        catch (Exception e)
+        {
 
-        backgroundWithShapes = Bitmap.createBitmap(getCurrentScreenWidth(), getCurrentScreenHeight(), Bitmap.Config.ARGB_8888);
+        }
 
         canvas = new Canvas(backgroundWithShapes);
         //canvas.drawBitmap(showmaker,0,0,null);
@@ -227,7 +232,7 @@ public class MyPaintView extends View  implements MyTool.ToolListener{
     public void addBackgroundWithShapes(Bitmap bitmap){
         MyBitmap myBitmap = new MyBitmap(bitmap);
         drawables.add(new MyBitmap(bitmap));
-        createBitmapOfCurrentShapes();
+        //createBitmapOfCurrentShapes();
     }
 
     public void clear()
@@ -238,8 +243,7 @@ public class MyPaintView extends View  implements MyTool.ToolListener{
         invalidate();
     }
 
-
-    private int getCurrentScreenHeight() { return this.getMeasuredHeight(); }
+    private int getCurrentScreenHeight() { return this.getMeasuredHeight();}
     private int getCurrentScreenWidth() { return this.getMeasuredWidth();}
 
 
@@ -251,7 +255,6 @@ public class MyPaintView extends View  implements MyTool.ToolListener{
 
     @Override
     public void removeIfIntersect(Point P1, Point P2) {
-
         if(bDraw == false)
         {
             int i;
