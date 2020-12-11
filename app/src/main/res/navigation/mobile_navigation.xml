@@ -39,10 +39,38 @@
         tools:layout="@layout/fragment_editor" />
 
     <fragment
+        android:id="@+id/navigation_gallery"
+        android:name="com.example.bottomnavigationactivity.ui.editor.EditorFragment"
+        android:label="@string/title_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
         android:id="@+id/navigation_camera"
         android:name="com.example.bottomnavigationactivity.ui.camera.CameraFragment"
         android:label="@string/title_camera"
-        tools:layout="@layout/fragment_camera"/>
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/actionCamera_toGallery"
+            app:destination="@id/navigation_gallery" />
+        <action
+            android:id="@+id/actionCamera_toPermissions"
+            app:destination="@id/navigation_permission"
+            app:popUpTo="@id/navigation_camera"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_permission"
+        android:name="com.example.bottomnavigationactivity.ui.camera.PermissionFragment"
+        android:label="Permission" >
+
+        <action
+            android:id="@+id/actionPermissions_toCamera"
+            app:destination="@id/navigation_camera"
+            app:popUpTo="@id/navigation_permission"
+            app:popUpToInclusive="true" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_ruler"

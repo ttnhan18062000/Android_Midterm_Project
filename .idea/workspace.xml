@@ -5,6 +5,7 @@
       <config />
     </shared>
   </component>
+<<<<<<< Updated upstream
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
@@ -39,12 +40,16 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/ui/editor/EditorFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/ui/editor/EditorFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/ui/process/ProcessFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bottomnavigationactivity/ui/process/ProcessFragment.java" afterDir="false" />
     </list>
+=======
+  <component name="ChangeListManager">
+    <list default="true" id="93267fdc-b7ca-4035-aae2-12dd4930418e" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="JUC4C18709004938" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_30_R" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -53,17 +58,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view>
-          <tree_state>
-            <expand />
-            <select />
-          </tree_state>
-        </projects_view>
+        <projects_view />
       </state>
     </system>
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="Bottom Navigation Activity" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -76,28 +73,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1jjrfQVxpBtO72Hf3sG5uoM1mEM" />
+  <component name="ProjectId" id="1lT2cJUf0psv2fTBc9TwaidV0WZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DEBUGGABLE_DEVICE" value="huawei-ine_lx2-JUC4C18709004938" />
-    <property name="DEBUGGABLE_PROCESS" value="com.example.bottomnavigationactivity" />
-    <property name="DEBUGGER_ID" value="Auto" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="JUC4C18709004938" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-22T08:09:30.665Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="SHOW_ALL_PROCESSES" value="false" />
-    <property name="extract.method.default.visibility" value="private" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../../../../SOFTWARE" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
+<<<<<<< Updated upstream
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.bottomnavigationactivity.editor_components.tools" />
@@ -114,6 +102,8 @@
       <recent name="C:\Users\Heova\AndroidStudioProjects\BottomNavigationActivity\app\src\main\java\com\example\bottomnavigationactivity\editor_components" />
     </key>
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
@@ -174,23 +164,21 @@
       </method>
     </configuration>
   </component>
-  <component name="StructureViewFactory">
-    <option name="ACTIVE_ACTIONS" value=",VISIBILITY_SORTER,SHOW_INTERFACES" />
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="96992888-bc0e-4d86-890c-7abcb5a96614" name="Default Changelist" comment="" />
-      <created>1604328444294</created>
+      <changelist id="93267fdc-b7ca-4035-aae2-12dd4930418e" name="Default Changelist" comment="" />
+      <created>1607606838801</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1604328444294</updated>
+      <updated>1607606838801</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< Updated upstream
     <state x="477" y="252" key="#PSD" timestamp="1605095950657">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -354,5 +342,23 @@
         <watch expression="dm" language="JAVA" />
       </configuration>
     </watches-manager>
+=======
+    <state x="829" y="73" key="#com.intellij.ide.util.MemberChooser" timestamp="1607689054080">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="829" y="73" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1607689054080" />
+    <state x="263" y="119" key="AndroidCreateResourceDirectoryDialog" timestamp="1607688796213">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="263" y="119" key="AndroidCreateResourceDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1607688796213" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1607662795639">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1607662795639" />
+    <state x="721" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1607662520553">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="721" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1607662520553" />
+>>>>>>> Stashed changes
   </component>
 </project>

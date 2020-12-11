@@ -18,6 +18,11 @@
                       <LayoutPositions />
                     </value>
                   </entry>
+                  <entry key="actionGlobal_toMain">
+                    <value>
+                      <LayoutPositions />
+                    </value>
+                  </entry>
                   <entry key="actionGlobal_toProcess">
                     <value>
                       <LayoutPositions />
@@ -33,9 +38,23 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="256" />
+                            <option name="x" value="500" />
                             <option name="y" value="12" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="actionCamera_toGallery">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="actionCamera_toPermissions">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -45,14 +64,14 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-318" />
-                            <option name="y" value="-19" />
+                            <option name="x" value="256" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="navigation_process">
+                  <entry key="navigation_g">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -64,13 +83,62 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+<<<<<<< Updated upstream
+                  <entry key="navigation_process">
+=======
+                  <entry key="navigation_main">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="navigation_permission">
+>>>>>>> Stashed changes
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="actionPermissions_toCamera">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="navigation_process">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="256" />
+                            <option name="y" value="368" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="navigation_ruler">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-204" />
-                            <option name="y" value="348" />
+                            <option name="x" value="12" />
+                            <option name="y" value="368" />
                           </Point>
                         </option>
                       </LayoutPositions>

@@ -9,9 +9,6 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9fe90b20373e53cda14cf70a3a9d6b6/material-1.0.0/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9fe90b20373e53cda14cf70a3a9d6b6/material-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9fe90b20373e53cda14cf70a3a9d6b6/material-1.0.0/res/drawable" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
