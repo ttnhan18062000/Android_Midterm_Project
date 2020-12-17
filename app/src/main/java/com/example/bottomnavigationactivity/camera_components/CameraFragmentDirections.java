@@ -1,6 +1,8 @@
 package com.example.bottomnavigationactivity.camera_components;
 
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.navigation.ActionOnlyNavDirections;
 import androidx.navigation.NavDirections;
@@ -29,13 +31,16 @@ public class CameraFragmentDirections {
     }
 
     public static class ActionCameraToGallery implements NavDirections {
-        private final HashMap arguments = new HashMap();
+
+        private static String TAG = "ActionCameraToGallery";
+        private final HashMap<String, String> arguments = new HashMap<>();
 
         private ActionCameraToGallery(@NonNull String rootDirectory) {
             if (rootDirectory == null) {
                 throw new IllegalArgumentException("Argument \"root_directory\" is marked as non-null but was passed a null value.");
             }
             this.arguments.put("root_directory", rootDirectory);
+            Log.d(TAG, "ActionCameraToGallery: directory stored: " + arguments.get("root_directory"));
         }
 
         @NonNull
@@ -53,7 +58,7 @@ public class CameraFragmentDirections {
         public Bundle getArguments() {
             Bundle __result = new Bundle();
             if (arguments.containsKey("root_directory")) {
-                String rootDirectory = (String) arguments.get("root_directory");
+                String rootDirectory = arguments.get("root_directory");
                 __result.putString("root_directory", rootDirectory);
             }
             return __result;
@@ -67,7 +72,7 @@ public class CameraFragmentDirections {
         @SuppressWarnings("unchecked")
         @NonNull
         public String getRootDirectory() {
-            return (String) arguments.get("root_directory");
+            return arguments.get("root_directory");
         }
 
         @Override

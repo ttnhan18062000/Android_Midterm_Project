@@ -13,8 +13,6 @@
         <item>CM</item>
         <item>M</item>
     </string-array>
-<<<<<<< Updated upstream
-=======
     <integer-array name="icon_list">
         <item>@drawable/line_tool_icon</item>
         <item>@drawable/eraser_tool_icon</item>
@@ -35,5 +33,4 @@
     <string name="delete_button_alt">Delete</string>
     <string name="delete_dialog">Delete current photo?</string>
     <string name="delete_title">Confirm</string>
->>>>>>> Stashed changes
 </resources>

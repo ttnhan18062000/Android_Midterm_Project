@@ -1,6 +1,8 @@
 package com.example.bottomnavigationactivity.gallery_components;
 
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.navigation.NavArgs;
 import java.lang.IllegalArgumentException;
@@ -11,9 +13,10 @@ import java.lang.SuppressWarnings;
 import java.util.HashMap;
 
 public class GalleryFragmentArgs implements NavArgs {
-    private final HashMap arguments = new HashMap();
+    private static String TAG = "GalleryFragmentArgs";
+    private final HashMap<String, String> arguments = new HashMap();
 
-    private GalleryFragmentArgs() {
+    public GalleryFragmentArgs() {
     }
 
     private GalleryFragmentArgs(HashMap argumentsMap) {
@@ -35,6 +38,7 @@ public class GalleryFragmentArgs implements NavArgs {
         } else {
             throw new IllegalArgumentException("Required argument \"root_directory\" is missing and does not have an android:defaultValue");
         }
+        Log.d(TAG, "fromBundle: root dir: " + __result.arguments.get("root_directory"));
         return __result;
     }
 

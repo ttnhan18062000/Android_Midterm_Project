@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/navigation_gallery"
-        android:name="com.example.bottomnavigationactivity.ui.editor.EditorFragment"
+        android:name="com.example.bottomnavigationactivity.ui.gallery.GalleryFragment"
         android:label="@string/title_gallery"
         tools:layout="@layout/fragment_gallery" />
 
