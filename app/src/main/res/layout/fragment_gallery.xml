@@ -21,7 +21,7 @@
             android:contentDescription="@string/back_button_alt"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginStart="@dimen/margin_xsmall"
+            android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_width="@dimen/round_button_small"
             android:layout_height="@dimen/round_button_small"
@@ -35,7 +35,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginEnd="@dimen/margin_xlarge"
+            android:layout_marginEnd="@dimen/margin_xxlarge"
             android:layout_marginBottom="@dimen/margin_small"
             android:layout_width="@dimen/round_button_small"
             android:layout_height="@dimen/round_button_small"
@@ -49,13 +49,28 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="@dimen/margin_xlarge"
+            android:layout_marginStart="@dimen/margin_xxlarge"
             android:layout_marginBottom="@dimen/margin_small"
             android:layout_width="@dimen/round_button_small"
             android:layout_height="@dimen/round_button_small"
             android:scaleType="fitCenter"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_delete" />
+
+        <ImageButton
+            android:id="@+id/to_edit_button"
+            android:contentDescription="@string/process_button_alt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_width="@dimen/round_button_small"
+            android:layout_height="@dimen/round_button_small"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_baseline_edit_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

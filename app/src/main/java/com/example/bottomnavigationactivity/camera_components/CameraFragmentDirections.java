@@ -40,7 +40,7 @@ public class CameraFragmentDirections {
                 throw new IllegalArgumentException("Argument \"root_directory\" is marked as non-null but was passed a null value.");
             }
             this.arguments.put("root_directory", rootDirectory);
-            Log.d(TAG, "ActionCameraToGallery: directory stored: " + arguments.get("root_directory"));
+            Log.d(TAG, "ActionCameraToGallery: storing directory : " + arguments.get("root_directory"));
         }
 
         @NonNull
