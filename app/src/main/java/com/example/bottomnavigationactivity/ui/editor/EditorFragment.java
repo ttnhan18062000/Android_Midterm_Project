@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ import com.example.bottomnavigationactivity.editor_components.dialog.SetRatioDia
 import com.example.bottomnavigationactivity.editor_components.tools.MyZoomTool;
 import com.example.bottomnavigationactivity.utility.MyImageManager;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -91,8 +93,18 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         Bundle args = getArguments();
         if(args != null)
         {
-            Uri imageUri = Uri.parse(args.getString("ImageUri"));
-            bitmapFromCamera = MyImageManager.loadImage(requireActivity(), imageUri);
+            ImageView imageView = fragmentView.findViewById(R.id.image);
+            String path = args.getString("path");
+            Log.d(TAG, "onCreateView: image path: " + path);
+            if(path != null) {
+                Bitmap bitmap = BitmapFactory.decodeFile(path);
+                if(bitmap != null) {
+                    bitmap = Bitmap.createScaledBitmap(bitmap,imageView.getWidth(),imageView.getHeight(),true);
+                    imageView.setImageBitmap(bitmap);
+
+                    Log.d(TAG, "onCreateView: load image successfully");
+                }
+            }
         }
         return fragmentView;
     }

@@ -1,6 +1,7 @@
 package com.example.bottomnavigationactivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.example.bottomnavigationactivity.ui.MenuLayout;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -101,5 +104,19 @@ public class MainActivity extends AppCompatActivity{
                 finish();
             }
         }
+    }
+
+    public static File getOutputDirectory(Context context)
+    {
+        Context appContext = context.getApplicationContext();
+        File[] mediaDirs = context.getExternalMediaDirs();
+        for (int i = 0; i < mediaDirs.length; i++) {
+            if (mediaDirs[i] != null) {
+                File file = new File(mediaDirs[i], "SIMP");
+                if(file.mkdirs())
+                    return mediaDirs[i];
+            }
+        }
+        return appContext.getFilesDir();
     }
 }
