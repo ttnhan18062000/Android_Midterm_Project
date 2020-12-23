@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity{
                 .addSubActionView(rulerButton)
                 .attachTo(actionButton)
                 .setStartAngle(0)
-                .setEndAngle(90)
+                .setEndAngle(180)
                 .build();
         menuLayout.actionMenu = actionMenu;
         menuLayout.mHeaderView = actionButton;
