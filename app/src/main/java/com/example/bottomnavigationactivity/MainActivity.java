@@ -37,25 +37,6 @@ public class MainActivity extends AppCompatActivity{
         menuLayout = findViewById(R.id.menuLayout);
         SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
         // repeat many times:
-        SubActionButton cameraButton = createSubActionButton(itemBuilder,R.drawable.camera_icon),
-                rulerButton = createSubActionButton(itemBuilder,R.drawable.ruler_icon),
-                editorButton = createSubActionButton(itemBuilder,R.drawable.editor_icon);
-
-
-        setNavigationController(cameraButton,R.id.actionGlobal_toCamera);
-        setNavigationController(editorButton,R.id.actionGlobal_toEditor);
-        setNavigationController(rulerButton,R.id.actionGlobal_toRuler);
-        //MyFloatingActionButton actionButton = new MyFloatingActionButton.Builder(this).build();
-
-
-        //  in Activity Context
-        ImageView icon = new ImageView(menuLayout.getContext()); // Create an icon
-        icon.setImageDrawable(getDrawable(R.drawable.menu_icon));
-        FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
-                .setContentView(icon)
-                .setPosition(9).build();
-
-        //MyMenuButton actionButton = (MyMenuButton)LayoutInflater.from(this).inflate(R.layout.my_menu_button_layout,null);
 
 //        ImageButton actionButton = findViewById(R.id.actionButton);
 
