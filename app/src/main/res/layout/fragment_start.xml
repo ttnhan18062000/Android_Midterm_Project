@@ -5,33 +5,127 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/fragment_main"
-    android:weightSum="3">
+    android:background="@drawable/gradient_background">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_marginTop="@dimen/margin_large">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="S.I.M.P"
-            android:textSize="40dp"
-            android:textAlignment="center"/>
-        <TextView
-            android:text="Sketching Intricately and Measuring Portability"
-            android:textSize="20dp"
+            android:text="@string/title_app"
+            android:textSize="70sp"
             android:textAlignment="center"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/margin_xsmall"/>
+        <TextView
+            android:text="@string/full_name_app"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent" />
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/margin_xxsmall"/>
     </LinearLayout>
-    <ImageButton
-        android:layout_width="300dp"
-        android:layout_margin="20dp"
-        android:layout_height="300dp"
-        android:id="@+id/startButton"
-        android:background="@drawable/start_button"/>
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_medium">
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            android:layout_margin="@dimen/margin_xsmall"
+            android:id="@+id/card_view_login">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_background_1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="25sp"
+                    android:layout_margin="@dimen/margin_xxsmall"
+                    android:text="@string/starting_menu_login"
+                    android:gravity="center"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            android:layout_margin="@dimen/margin_xsmall"
+            android:id="@+id/card_view_Tutorial">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_background_1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="25sp"
+                    android:layout_margin="@dimen/margin_xxsmall"
+                    android:text="@string/starting_menu_tutorial"
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            android:layout_margin="@dimen/margin_xsmall"
+            android:id="@+id/card_view_setting">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_background_1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="25sp"
+                    android:layout_margin="@dimen/margin_xxsmall"
+                    android:text="@string/starting_menu_setting"
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            android:layout_margin="@dimen/margin_xsmall"
+            android:id="@+id/card_view_credit">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_background_1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="25sp"
+                    android:layout_margin="@dimen/margin_xxsmall"
+                    android:text="@string/starting_menu_credit"
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </LinearLayout>

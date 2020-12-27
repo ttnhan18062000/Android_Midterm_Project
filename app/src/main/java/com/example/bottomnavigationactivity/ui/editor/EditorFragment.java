@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,6 +45,8 @@ import java.util.ArrayList;
 
 public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioDialogListener,SetTextDialog.SetTextDialogListener {
 
+    private static int IMAGE_WIDTH = 720;
+    private static int IMAGE_HEIGHT = 759;
     Activity mActivity = null;
     View fragmentView = null;
     private MyPaintView myPaintView;
@@ -93,17 +96,10 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         Bundle args = getArguments();
         if(args != null)
         {
-            ImageView imageView = fragmentView.findViewById(R.id.image);
             String path = args.getString("path");
             Log.d(TAG, "onCreateView: image path: " + path);
             if(path != null) {
-                Bitmap bitmap = BitmapFactory.decodeFile(path);
-                if(bitmap != null) {
-                    bitmap = Bitmap.createScaledBitmap(bitmap,imageView.getWidth(),imageView.getHeight(),true);
-                    imageView.setImageBitmap(bitmap);
-
-                    Log.d(TAG, "onCreateView: load image successfully");
-                }
+                bitmapFromCamera  = BitmapFactory.decodeFile(path);
             }
         }
         return fragmentView;
@@ -114,9 +110,30 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         super.onStart();
         if(bitmapFromCamera != null) {
             MyPaintView paintView = fragmentView.findViewById(R.id.paintView);
-            paintView.addBackgroundWithShapes(bitmapFromCamera);
-            bitmapFromCamera = null;
+            final ViewTreeObserver viewTreeObserver = paintView.getViewTreeObserver();
+            if(viewTreeObserver.isAlive())
+            {
+                viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        bitmapFromCamera  = Bitmap.createScaledBitmap(bitmapFromCamera,
+                                paintView.getMeasuredWidth(),paintView.getMeasuredHeight(),true);
+                        bitmapFromCamera = Bitmap.createScaledBitmap(bitmapFromCamera,
+                                bitmapFromCamera.getWidth()/IMAGE_WIDTH,
+                                bitmapFromCamera.getHeight()/IMAGE_HEIGHT, false);
+                        Log.d(TAG, "onDraw bitmap from camera: bitmap Size: " + String.valueOf(bitmapFromCamera.getWidth())
+                                + " " + String.valueOf(bitmapFromCamera.getHeight()));
+                        paintView.addBackgroundWithShapes(bitmapFromCamera);
+                        bitmapFromCamera = null;
+                    }
+                });
+            }
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private ArrayList<MyTool> createToolList() {

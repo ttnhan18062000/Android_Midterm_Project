@@ -1,15 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <EditText
-        android:id="@+id/layout_dialog_set_text_text_view"
-        android:inputType="textEmailAddress"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/low_dark_blue">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:text="@string/dialog_set_text_tittle"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        />
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dialog_margin_medium"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:id="@+id/layout_dialog_set_text_text_view"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/low_dark_blue"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="@dimen/dialog_margin_medium"
+            android:textSize="20sp"
+            android:text="@string/button_ok"
+            android:textColor="@color/white"
+            android:id="@+id/button_ok"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/low_dark_blue"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="@dimen/dialog_margin_medium"
+            android:textSize="20sp"
+            android:text="@string/button_cancel"
+            android:textColor="@color/white"
+            android:id="@+id/button_cancel"/>
+    </LinearLayout>
 </LinearLayout>

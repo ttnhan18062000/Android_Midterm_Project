@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.editor.EditorFragment"
     android:id="@+id/editorFragment"
+    android:background="@drawable/gradient_background_2"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,20 +36,25 @@
             android:layout_weight="1"
             android:layout_toRightOf="@id/colorPickerPreview">
             <ImageButton
-
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
                 android:id="@+id/buttonClear"
-                android:src="@drawable/clear"/>
+                android:src="@drawable/ic_baseline_delete_forever_24"
+                android:background="@color/xxlight_blue"
+                android:layout_marginRight="@dimen/margin_xxsmall"
+                android:layout_marginLeft="@dimen/margin_xxsmall"/>
             <ImageButton android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:id="@+id/buttonChooseImage"
-                android:src="@drawable/open_button_icon"
+                android:src="@drawable/ic_baseline_add_to_photos_24"
                 android:scaleType="fitXY"
-                android:layout_gravity="center_vertical"/>/>
+                android:background="@color/xxlight_blue"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/margin_xxsmall"
+                android:layout_marginLeft="@dimen/margin_xxsmall"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -60,7 +66,8 @@
         android:layout_centerVertical="true"
         app:layout_constraintTop_toBottomOf="@+id/ll"
         app:layout_constraintBottom_toTopOf="@+id/toolBox"
-        tools:layout_editor_absoluteX="29dp" />
+        tools:layout_editor_absoluteX="29dp"
+        android:background="@drawable/border_rect"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -68,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/toolBox">
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="300sp"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -76,11 +83,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
         <ImageView
-            android:layout_width="70sp"
-            android:layout_height="70sp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/selected_frame"
+            android:src="@drawable/ic_baseline_crop_free_24"
             android:scaleType="centerInside"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

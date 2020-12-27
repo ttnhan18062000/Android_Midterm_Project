@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.bottomnavigationactivity.R;
+
+import java.util.Objects;
 
 public class UserHelpDialog extends DialogFragment {
     @NonNull
@@ -22,14 +25,13 @@ public class UserHelpDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog_user_help, null);
-        builder.setView(view)
-                .setTitle("Tool Describtion")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
+        view.findViewById(R.id.button_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Objects.requireNonNull(getDialog()).dismiss();
+            }
+        });
+        builder.setView(view);
         Bundle args = getArguments();
         if(args != null)
         {
@@ -38,6 +40,12 @@ public class UserHelpDialog extends DialogFragment {
             tv.setText(describtion);
         }
         return builder.create();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).requestFeature(Window.FEATURE_NO_TITLE);
     }
 
     public static UserHelpDialog newInstance(String describtion) {

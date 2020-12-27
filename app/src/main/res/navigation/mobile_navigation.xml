@@ -37,7 +37,19 @@
         android:id="@+id/navigation_main"
         android:name="com.example.bottomnavigationactivity.ui.start.StartFragment"
         android:label="Main"
-        tools:layout="@layout/fragment_start"/>
+        tools:layout="@layout/fragment_start">
+        <action
+            android:id="@+id/actionMain_toTutorial"
+            app:destination="@id/navigation_tutorial"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_tutorial"
+        android:name="com.example.bottomnavigationactivity.ui.tutorial.TutorialFragment"
+        android:label="@string/title_tutorial"
+        tools:layout="@layout/fragment_tutorial"/>
 
     <fragment
         android:id="@+id/navigation_editor"

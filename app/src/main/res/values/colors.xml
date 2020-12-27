@@ -3,7 +3,27 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="icActive">#FFFFFFFF</color>
-    <color name="icFocused">#DDFFFFFF</color>
-    <color name="icPressed">#AAFFFFFF</color>
+    <color name="icActive">#49D3CD</color>
+    <color name="icFocused">#00A5C0</color>
+    <color name="icPressed">#0E918C</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="dark_purple">#360568</color>
+    <color name="purple">#482183</color>
+    <color name="light_purple">#5B2A86</color>
+    <color name="xlight_purple">#A156B9</color>
+    <color name="light_blue_purple">#7785AC</color>
+    <color name="dark_blue">#0B1354</color>
+    <color name="blue_purple">#150485</color>
+    <color name="low_dark_blue">#303A99</color>
+    <color name="blue">#165BAA</color>
+    <color name="dark_teal">#0d7377</color>
+    <color name="teal">#0E918C</color>
+    <color name="dark_cyan">#008B8B</color>
+    <color name="cyan">#00A5C0</color>
+    <color name="light_cyan">#1dd3bd</color>
+    <color name="xlight_cyan">#49D3CD</color>
+    <color name="xxlight_blue">#9AC6C5</color>
+    <color name="xxlight_blue_green">#A5E6BA</color>
 </resources>

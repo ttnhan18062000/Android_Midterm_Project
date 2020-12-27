@@ -39,12 +39,14 @@ public class MainActivity extends AppCompatActivity{
         // repeat many times:
         SubActionButton cameraButton = createSubActionButton(itemBuilder,R.drawable.camera_icon),
                 rulerButton = createSubActionButton(itemBuilder,R.drawable.ruler_icon),
-                editorButton = createSubActionButton(itemBuilder,R.drawable.editor_icon);
+                editorButton = createSubActionButton(itemBuilder,R.drawable.editor_icon),
+                menuButton = createSubActionButton(itemBuilder, R.drawable.ic_baseline_menu_24);
 
 
         setNavigationController(cameraButton,R.id.actionGlobal_toCamera);
         setNavigationController(editorButton,R.id.actionGlobal_toEditor);
         setNavigationController(rulerButton,R.id.actionGlobal_toRuler);
+        setNavigationController(menuButton, R.id.actionGlobal_toMain);
         //MyFloatingActionButton actionButton = new MyFloatingActionButton.Builder(this).build();
 
 

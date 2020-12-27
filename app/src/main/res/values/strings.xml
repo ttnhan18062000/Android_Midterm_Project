@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">Navigation Activity</string>
+    <string name="title_tutorial">Tutorial</string>
     <string name="title_camera">Camera</string>
     <string name="title_editor">Editor</string>
     <string name="title_ruler">Ruler</string>
     <string name="title_process">Process</string>
     <string name="title_gallery">Gallery</string>
-    <string name="set_ratio">Length: </string>
+    <string name="title_app">S.I.M.P</string>
+    <string name="full_name_app">Sketching Intricately and Measuring Portability</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="ratio_measure">
@@ -34,4 +36,18 @@
     <string name="delete_dialog">Delete current photo?</string>
     <string name="delete_title">Confirm</string>
     <string name="process_button_alt">Process</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_close">Close</string>
+
+    <string name="dialog_set_ratio_text">Enter Line\'s length: </string>
+    <string name="dialog_set_ratio_title">Set Ratio</string>
+    <string name="dialog_user_help_title">Tool\'s Description</string>
+    <string name="dialog_set_text_tittle">Enter Text</string>
+
+    <string name="starting_menu_login">Login</string>
+    <string name="starting_menu_without_login">Continue Without Login</string>
+    <string name="starting_menu_tutorial">Tutorial</string>
+    <string name="starting_menu_setting">Setting</string>
+    <string name="starting_menu_credit">Credit</string>
 </resources>
