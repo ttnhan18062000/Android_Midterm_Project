@@ -43,13 +43,58 @@
             app:destination="@id/navigation_tutorial"
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/actionMain_toCredit"
+            app:destination="@id/navigation_credit"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/actionMain_toLogin"
+            app:destination="@id/navigation_login"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_credit"
+        android:name="com.example.bottomnavigationactivity.ui.start.CreditFragment"
+        android:label="@string/title_credit"
+        tools:layout="@layout/fragment_credit">
+        <action
+            android:id="@+id/actionCredit_toMain"
+            app:destination="@+id/navigation_main"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.bottomnavigationactivity.ui.start.LoginFragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/actionLogin_toMain"
+            app:destination="@+id/navigation_main"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/actionLogin_toCamera"
+            app:destination="@+id/navigation_camera"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
     </fragment>
 
     <fragment
         android:id="@+id/navigation_tutorial"
         android:name="com.example.bottomnavigationactivity.ui.tutorial.TutorialFragment"
         android:label="@string/title_tutorial"
-        tools:layout="@layout/fragment_tutorial"/>
+        tools:layout="@layout/fragment_tutorial">
+        <action
+            android:id="@+id/actionTutorial_toMain"
+            app:destination="@+id/navigation_main"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_editor"

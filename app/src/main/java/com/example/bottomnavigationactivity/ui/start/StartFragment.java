@@ -36,15 +36,25 @@ public class StartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 v.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.click_button_1));
-                Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(R.id.actionGlobal_toCamera);
+                Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(R.id.actionMain_toLogin);
             }
         });
+
         CardView imageButtonTutorial = mFragment.findViewById(R.id.card_view_Tutorial);
         imageButtonTutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.click_button_1));
                 Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(R.id.actionMain_toTutorial);
+            }
+        });
+
+        CardView imageButtonCredit = mFragment.findViewById(R.id.card_view_credit);
+        imageButtonCredit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.click_button_1));
+                Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(R.id.actionMain_toCredit);
             }
         });
         return mFragment;

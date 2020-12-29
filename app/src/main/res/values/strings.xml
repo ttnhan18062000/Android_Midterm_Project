@@ -6,6 +6,8 @@
     <string name="title_ruler">Ruler</string>
     <string name="title_process">Process</string>
     <string name="title_gallery">Gallery</string>
+    <string name="title_credit">Credit</string>
+    <string name="title_login">Login</string>
     <string name="title_app">S.I.M.P</string>
     <string name="full_name_app">Sketching Intricately and Measuring Portability</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -50,4 +52,12 @@
     <string name="starting_menu_tutorial">Tutorial</string>
     <string name="starting_menu_setting">Setting</string>
     <string name="starting_menu_credit">Credit</string>
+
+    <string name="credit_1">Truong Trung Nhan</string>
+    <string name="credit_2">Nguyen Minh Ky</string>
+    <string name="credit_school">University of Science, Ho Chi Minh City</string>
+    <string name="credit_time">2020</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_without_account">continue without login</string>
 </resources>

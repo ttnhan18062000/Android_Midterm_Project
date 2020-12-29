@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.bottomnavigationactivity.R;
@@ -68,6 +71,15 @@ public class TutorialFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         getImageViewList(view);
+
+        ImageButton back = view.findViewById(R.id.image_button_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.click_button_1));
+                Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(R.id.actionTutorial_toMain);
+            }
+        });
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager_tutorial);
         viewPager.setOffscreenPageLimit(2);
