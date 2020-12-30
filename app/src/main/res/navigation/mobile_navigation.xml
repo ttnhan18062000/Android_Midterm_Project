@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/navigation_main"
-        android:name="com.example.bottomnavigationactivity.ui.start.StartFragment"
+        android:name="com.example.simp.ui.start.StartFragment"
         android:label="Main"
         tools:layout="@layout/fragment_start">
         <action
@@ -57,7 +57,7 @@
 
     <fragment
         android:id="@+id/navigation_credit"
-        android:name="com.example.bottomnavigationactivity.ui.start.CreditFragment"
+        android:name="com.example.simp.ui.start.CreditFragment"
         android:label="@string/title_credit"
         tools:layout="@layout/fragment_credit">
         <action
@@ -69,7 +69,7 @@
 
     <fragment
         android:id="@+id/navigation_login"
-        android:name="com.example.bottomnavigationactivity.ui.start.LoginFragment"
+        android:name="com.example.simp.ui.start.LoginFragment"
         android:label="@string/title_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -86,7 +86,7 @@
 
     <fragment
         android:id="@+id/navigation_tutorial"
-        android:name="com.example.bottomnavigationactivity.ui.tutorial.TutorialFragment"
+        android:name="com.example.simp.ui.tutorial.TutorialFragment"
         android:label="@string/title_tutorial"
         tools:layout="@layout/fragment_tutorial">
         <action
@@ -98,19 +98,19 @@
 
     <fragment
         android:id="@+id/navigation_editor"
-        android:name="com.example.bottomnavigationactivity.ui.editor.EditorFragment"
+        android:name="com.example.simp.ui.editor.EditorFragment"
         android:label="@string/title_editor"
         tools:layout="@layout/fragment_editor" />
 
     <fragment
         android:id="@+id/navigation_gallery"
-        android:name="com.example.bottomnavigationactivity.ui.gallery.GalleryFragment"
+        android:name="com.example.simp.ui.gallery.GalleryFragment"
         android:label="@string/title_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/navigation_camera"
-        android:name="com.example.bottomnavigationactivity.ui.camera.CameraFragment"
+        android:name="com.example.simp.ui.camera.CameraFragment"
         android:label="@string/title_camera"
         tools:layout="@layout/fragment_camera">
         <action
@@ -125,7 +125,7 @@
 
     <fragment
         android:id="@+id/navigation_permission"
-        android:name="com.example.bottomnavigationactivity.ui.camera.PermissionFragment"
+        android:name="com.example.simp.ui.camera.PermissionFragment"
         android:label="Permission" >
 
         <action
@@ -138,13 +138,13 @@
 
     <fragment
         android:id="@+id/navigation_ruler"
-        android:name="com.example.bottomnavigationactivity.ui.ruler.RulerFragment"
+        android:name="com.example.simp.ui.ruler.RulerFragment"
         android:label="@string/title_ruler"
         tools:layout="@layout/fragment_ruler" />
 
     <fragment
         android:id="@+id/navigation_process"
-        android:name="com.example.bottomnavigationactivity.ui.process.ProcessFragment"
+        android:name="com.example.simp.ui.process.ProcessFragment"
         android:label="@string/title_process"
         tools:layout="@layout/fragment_process" />
 </navigation>

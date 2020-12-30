@@ -16,7 +16,7 @@
         android:weightSum="5"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/ll">
-        <com.example.bottomnavigationactivity.editor_components.ColorPickerView
+        <com.example.simp.editor_components.ColorPickerView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/colorPicker"
@@ -58,7 +58,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.example.bottomnavigationactivity.editor_components.MyPaintView
+    <com.example.simp.editor_components.MyPaintView
         android:id="@+id/paintView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
