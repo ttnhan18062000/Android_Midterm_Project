@@ -35,8 +35,8 @@ public class UserHelpDialog extends DialogFragment {
         if(args != null)
         {
             TextView tv = view.findViewById(R.id.tv_describtion);
-            String describtion = args.getString("describtion");
-            tv.setText(describtion);
+            String description = args.getString("description");
+            tv.setText(description);
         }
         return builder.create();
     }
@@ -47,12 +47,11 @@ public class UserHelpDialog extends DialogFragment {
         Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).requestFeature(Window.FEATURE_NO_TITLE);
     }
 
-    public static UserHelpDialog newInstance(String describtion) {
+    public static UserHelpDialog newInstance(String description) {
         Bundle args = new Bundle();
         UserHelpDialog fragment = new UserHelpDialog();
-        args.putString("describtion", describtion);
+        args.putString("description", description);
         fragment.setArguments(args);
         return fragment;
     }
-
 }

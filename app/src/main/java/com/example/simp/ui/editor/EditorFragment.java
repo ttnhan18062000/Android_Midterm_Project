@@ -137,15 +137,7 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         tools.add(new MyEraserTool("E", MyTool.ToolType.ERASER, "this is a eraser tool"));
         tools.add(new MyTextTool("T", MyTool.ToolType.TEXT, "this is a text noting tool"));
         tools.add(new MyRatioTool("R", MyTool.ToolType.RATIO, "this is a setting ratio tool"));
-        tools.add(new MyMoveTool("M", MyTool.ToolType.MOVE, "move move move move"));
-
-//        tools.add(new MyLineTool("L", MyTool.ToolType.LINE));
-//        tools.add(new MyEraserTool("E", MyTool.ToolType.ERASER));
-//        tools.add(new MyTextTool("T", MyTool.ToolType.TEXT));
-//        tools.add(new MyZoomTool("Z", MyTool.ToolType.ZOOM));
-//        tools.add(new MyRatioTool("R", MyTool.ToolType.RATIO));
-//        tools.add(new MyMoveTool("M", MyTool.ToolType.MOVE));
-
+        tools.add(new MyMoveTool("M", MyTool.ToolType.MOVE, "this is a moving-object tool"));
         return tools;
     }
 

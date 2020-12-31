@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.simp.MainActivity;
 import com.example.simp.R;
 
 public class LoginFragment extends Fragment {
@@ -32,6 +33,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 v.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.click_button_1));
+                //Login Area//////////////////////////////////
             }
         });
 
@@ -41,6 +43,9 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 v.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.click_button_1));
                 Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(R.id.actionLogin_toCamera);
+                MainActivity mainActivity = (MainActivity)requireActivity();
+                mainActivity.turnActionButton(true);
+                mainActivity.setLoginStatus(true);
             }
         });
 

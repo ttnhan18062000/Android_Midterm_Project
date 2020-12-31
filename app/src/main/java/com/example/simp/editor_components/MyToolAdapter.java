@@ -87,14 +87,14 @@ public class MyToolAdapter extends RecyclerView.Adapter<MyToolAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowUserHelpDialog(tool.getDescribtion());
+                ShowUserHelpDialog(tool.getDescription());
             }
         });
     }
 
-    private void ShowUserHelpDialog(String toolDescribtion) {
+    private void ShowUserHelpDialog(String toolDescription) {
         FragmentManager fm = ((AppCompatActivity)mContext).getSupportFragmentManager();
-        UserHelpDialog editNameDialogFragment = UserHelpDialog.newInstance(toolDescribtion);
+        UserHelpDialog editNameDialogFragment = UserHelpDialog.newInstance(toolDescription);
         // SETS the target fragment for use later when sending results
 
         //editNameDialogFragment.setTargetFragment(this, 300);

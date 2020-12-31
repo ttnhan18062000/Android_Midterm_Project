@@ -24,7 +24,20 @@ public class MainActivity extends AppCompatActivity{
     private static int POPUPWINDOW_SET_RATIO = 203;
 
     Activity selfActivity = this;
-
+    private FloatingActionButton actionButton = null;
+    public FloatingActionButton getActionButton()
+    {
+        return actionButton;
+    }
+    private boolean loginStatus = false;
+    public boolean getLoginStatus()
+    {
+        return loginStatus;
+    }
+    public void setLoginStatus(boolean status)
+    {
+        this.loginStatus = status;
+    }
     MenuLayout menuLayout;
     View mainLayout;
 
@@ -43,17 +56,17 @@ public class MainActivity extends AppCompatActivity{
                 menuButton = createSubActionButton(itemBuilder, R.drawable.ic_baseline_menu_24);
 
 
-        setNavigationController(cameraButton,R.id.actionGlobal_toCamera);
-        setNavigationController(editorButton,R.id.actionGlobal_toEditor);
-        setNavigationController(rulerButton,R.id.actionGlobal_toRuler);
-        setNavigationController(menuButton, R.id.actionGlobal_toMain);
+        setNavigationController(cameraButton,R.id.actionGlobal_toCamera, true);
+        setNavigationController(editorButton,R.id.actionGlobal_toEditor, true);
+        setNavigationController(rulerButton,R.id.actionGlobal_toRuler, true);
+        setNavigationController(menuButton, R.id.actionGlobal_toMain, false);
         //MyFloatingActionButton actionButton = new MyFloatingActionButton.Builder(this).build();
 
 
         //  in Activity Context
         ImageView icon = new ImageView(menuLayout.getContext()); // Create an icon
         icon.setImageDrawable(getDrawable(R.drawable.menu_icon));
-        FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
+        actionButton = new FloatingActionButton.Builder(this)
                 .setContentView(icon)
                 .setPosition(9).build();
 
@@ -74,15 +87,24 @@ public class MainActivity extends AppCompatActivity{
                 .build();
         menuLayout.actionMenu = actionMenu;
         menuLayout.mHeaderView = actionButton;
+        turnActionButton(false);
     }
 
+    public void turnActionButton(boolean turn)
+    {
+        if(turn)
+            actionButton.setVisibility(View.VISIBLE);
+        else
+            actionButton.setVisibility(View.INVISIBLE);
+    }
 
-
-    private void setNavigationController(SubActionButton button, final int actionGlobalID) {
+    private void setNavigationController(SubActionButton button, final int actionGlobalID, final boolean turnActionButton) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(selfActivity,R.id.nav_host_fragment).navigate(actionGlobalID);
+                MainActivity.this.turnActionButton(turnActionButton);
+                MainActivity.this.actionButton.callOnClick();
             }
         });
     }

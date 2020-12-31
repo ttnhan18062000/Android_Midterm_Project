@@ -43,7 +43,7 @@ public class MyRecyclerViewManagement
     private ArrayList<MyTool> cloneArrayList(ArrayList<MyTool> myToolList) {
         ArrayList<MyTool> result = new ArrayList<MyTool>();
         for(int i = 0; i < myToolList.size(); ++i)
-            result.add(new MyTool(myToolList.get(i).getName(), myToolList.get(i).getToolID(), myToolList.get(i).getDescribtion()));
+            result.add(new MyTool(myToolList.get(i).getName(), myToolList.get(i).getToolID(), myToolList.get(i).getDescription()));
         return result;
     }
 
@@ -82,7 +82,7 @@ public class MyRecyclerViewManagement
 
             public void generateItemsOnLeft(){
                 for(int i = initialTools.size() - 1; i >= 0; i--){
-                    MyTool newTool = new MyTool(initialTools.get(i).getName(), initialTools.get(i).getToolID(), initialTools.get(i).getDescribtion());
+                    MyTool newTool = new MyTool(initialTools.get(i).getName(), initialTools.get(i).getToolID(), initialTools.get(i).getDescription());
                     myToolList.add(0, newTool);
                 }
                 myToolAdapter.notifyDataSetChanged();

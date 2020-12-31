@@ -59,5 +59,9 @@
     <string name="credit_time">2020</string>
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
-    <string name="login_without_account">continue without login</string>
+    <string name="login_without_account"><u>continue without login\n(guest)</u></string>
+    <string name="credit_author_1">Author 1</string>
+    <string name="main_login">Login</string>
+    <string name="main_start">Start</string>
+    <string name="starting_menu_logout">Logout</string>
 </resources>
