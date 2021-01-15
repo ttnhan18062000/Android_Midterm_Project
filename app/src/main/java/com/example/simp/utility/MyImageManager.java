@@ -119,7 +119,6 @@ public class MyImageManager {
 
     private static String getFilePath(Uri uri, ContentResolver contentResolver) {
         String[] projection = {MediaStore.Images.Media.DATA};
-
         Cursor cursor = contentResolver.query(uri, projection, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Bottom Navigation Activity"
+rootProject.name = "SIMP"

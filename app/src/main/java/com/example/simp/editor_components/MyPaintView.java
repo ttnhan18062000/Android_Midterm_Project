@@ -55,8 +55,6 @@ public class MyPaintView extends View  implements MyTool.ToolListener{
         currentDrawableIndex = drawables.size() - 1;
     }
 
-
-
     public interface OnEndDrawListener {
         public void onEndDraw(MyTool.ToolType iTool);
     }
@@ -203,6 +201,11 @@ public class MyPaintView extends View  implements MyTool.ToolListener{
     }
 
     private MyTool.ToolType iTool = MyTool.ToolType.LINE;
+
+    public Bitmap getBackgroundWithShapes() {
+        return backgroundWithShapes;
+    }
+
     Bitmap backgroundWithShapes;
 
     private void createBitmapOfCurrentShapes() {

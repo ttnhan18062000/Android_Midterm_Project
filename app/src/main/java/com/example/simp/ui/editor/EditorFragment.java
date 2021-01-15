@@ -9,11 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,8 +37,12 @@ import com.example.simp.editor_components.tools.MyRatioTool;
 import com.example.simp.editor_components.tools.MyTextTool;
 import com.example.simp.editor_components.tools.MyTool;
 import com.example.simp.editor_components.dialog.SetRatioDialog;
+import com.example.simp.utility.MyFileManager;
+import com.example.simp.utility.MyImageManager;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioDialogListener,SetTextDialog.SetTextDialogListener {
@@ -146,12 +153,34 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
         chooseImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 0);
+                PopupMenu popup = new PopupMenu(getActivity(), v);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.editor_menu, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.btn_save_image:
+                                Bitmap savedBitmap = myPaintView.getBackgroundWithShapes();
+                                MyImageManager.saveImage(getContext(),savedBitmap,"SIMP","demo");
+                                break;
+                            case R.id.btn_load_image:
+                                Intent intent = new Intent(Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                startActivityForResult(intent, 0);
+                                break;
+                            default:
+                                return false;
+                        }
+                        return false;
+                    }
+                });
+                popup.show();
             }
         });
     }
+
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -218,12 +247,10 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
     private void showSetTextDialog() {
         FragmentManager fm = getFragmentManager();
         SetTextDialog editNameDialogFragment = SetTextDialog.newInstance();
-        // SETS the target fragment for use later when sending results
+        // SETS the target fragment for se later when sending results
         editNameDialogFragment.setTargetFragment(this, 301);
         editNameDialogFragment.show(fm, "fragment_set_text");
     }
-
-
     @Override
     public void applyLength(float length) {
         myPaintView.setRatio(length);
