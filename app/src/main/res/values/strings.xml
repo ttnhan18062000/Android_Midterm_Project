@@ -1,16 +1,17 @@
 <resources>
     <string name="app_name">Navigation Activity</string>
-    <string name="title_tutorial">Tutorial</string>
     <string name="title_camera">Camera</string>
     <string name="title_editor">Editor</string>
     <string name="title_ruler">Ruler</string>
     <string name="title_process">Process</string>
     <string name="title_gallery">Gallery</string>
+    <string name="set_ratio">Length: </string>
     <string name="title_credit">Credit</string>
     <string name="title_login">Login</string>
+    <string name="title_logout">Logout</string>
+    <string name="title_tutorial">Tutorial</string>
     <string name="title_app">S.I.M.P</string>
     <string name="full_name_app">Sketching Intricately and Measuring Portability</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="ratio_measure">
         <item>MM</item>
@@ -25,6 +26,14 @@
         <item>@drawable/move_tool_icon</item>
         <item>@drawable/zoom_tool_icon</item>
     </integer-array>
+    <string-array name="language_list">
+        <item>English</item>
+        <item>Tiếng Việt</item>
+    </string-array>
+    <string-array name="theme_list">
+        <item>Cyberpunk</item>
+        <item>Oldschool</item>
+    </string-array>
     <string name="capture_button_alt">Capture</string>
     <string name="switch_camera_button_alt">Switch camera</string>
     <string name="gallery_button_alt">Gallery</string>
@@ -53,15 +62,18 @@
     <string name="starting_menu_setting">Setting</string>
     <string name="starting_menu_credit">Credit</string>
 
-    <string name="credit_1">Truong Trung Nhan</string>
-    <string name="credit_2">Nguyen Minh Ky</string>
+    <string name="credit_1">Trung-Nhan Trương</string>
+    <string name="credit_2">Minh-Ky Nguyen</string>
     <string name="credit_school">University of Science, Ho Chi Minh City</string>
     <string name="credit_time">2020</string>
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
-    <string name="login_without_account"><u>continue without login\n(guest)</u></string>
+    <string name="login_without_account"><u>continue without login<br/>(guest)</u></string>
     <string name="credit_author_1">Author 1</string>
     <string name="main_login">Login</string>
     <string name="main_start">Start</string>
     <string name="starting_menu_logout">Logout</string>
+    <string name="title_setting">Setting</string>
+    <string name="setting_language">Language</string>
+    <string name="setting_theme">Theme</string>
 </resources>

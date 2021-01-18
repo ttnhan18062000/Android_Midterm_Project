@@ -56,6 +56,15 @@ public class StartFragment extends Fragment {
             }
         });
 
+        CardView setting = mFragment.findViewById(R.id.card_view_setting);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.click_button_1));
+                Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(R.id.actionMain_toSetting);
+            }
+        });
+
         CardView credit = mFragment.findViewById(R.id.card_view_credit);
         credit.setOnClickListener(new View.OnClickListener() {
             @Override

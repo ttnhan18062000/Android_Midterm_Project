@@ -29,7 +29,7 @@
         android:id="@+id/edit_text_username"
         android:layout_below="@id/text_view_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_xxsmall"
         android:ems="10"
         android:hint="@string/login_username"
         android:inputType="textPersonName"
@@ -74,7 +74,8 @@
                     android:layout_margin="@dimen/margin_xxsmall"
                     android:text="@string/starting_menu_login"
                     android:gravity="center"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:id="@+id/text_view_login"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

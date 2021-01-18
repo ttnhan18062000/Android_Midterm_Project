@@ -53,6 +53,11 @@
             app:destination="@id/navigation_login"
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/actionMain_toSetting"
+            app:destination="@id/navigation_setting"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
     </fragment>
 
     <fragment
@@ -80,6 +85,18 @@
         <action
             android:id="@+id/actionLogin_toCamera"
             app:destination="@+id/navigation_camera"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.example.simp.ui.start.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/actionSetting_toMain"
+            app:destination="@+id/navigation_main"
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_fade_exit"/>
     </fragment>

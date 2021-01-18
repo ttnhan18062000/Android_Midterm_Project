@@ -32,7 +32,5 @@ public class TutorialPageFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        EditText editText = view.findViewById(R.id.edit_text_test_number);
-        editText.setText(String.valueOf(myTutorial.num));
     }
 }
