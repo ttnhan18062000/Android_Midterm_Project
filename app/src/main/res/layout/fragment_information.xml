@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/UpdateImageView"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:padding="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/UpdateAvatarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button_white"
+        android:drawableLeft="@drawable/ic_camera"
+        android:text=" ĐỔI HÌNH ĐẠI DIỆN"
+        android:textColor="#808080"
+        app:layout_constraintBottom_toTopOf="@+id/UpdateName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateImageView" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/UpdateName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateAvatarButton">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bạn thích được gọi là gì?"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/UpdateEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateName">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/UpdateWhere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateEmail">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Where"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bạn đang sống ở đâu?"
+            android:inputType="textPostalAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/UpdateSelfIntro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateWhere">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vài dòng về bạn"
+            android:inputType="textShortMessage"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btn_update_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button_white"
+        android:text="CẬP NHẬT"
+        android:textColor="#808080"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateSelfIntro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 
 import com.example.simp.MainActivity;
 import com.example.simp.R;
+import com.example.simp.utility.AccountInfoSingleton;
 
 
 public class StartFragment extends Fragment {
@@ -79,6 +80,8 @@ public class StartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)mActivity).setLoginStatus(false);
+                ((MainActivity)mActivity).menuIcon.setImageDrawable(getResources().getDrawable(R.drawable.menu_icon));
+                AccountInfoSingleton.getAccountInfoHolder().setupInfo("");
                 refreshFragmentState();
             }
         });

@@ -5,6 +5,10 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_main">
 
+    <action android:id="@+id/actionGlobal_toInformation"
+        app:destination="@+id/navigation_information"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit"/>
     <action android:id="@+id/actionGlobal_toMain"
         app:destination="@+id/navigation_main"
         app:enterAnim="@anim/fragment_fade_enter"
@@ -164,4 +168,10 @@
         android:name="com.example.simp.ui.process.ProcessFragment"
         android:label="@string/title_process"
         tools:layout="@layout/fragment_process" />
+
+    <fragment
+        android:id="@+id/navigation_information"
+        android:name="com.example.simp.ui.information.InformationFragment"
+        android:label="Information"
+        tools:layout="@layout/fragment_information"/>
 </navigation>

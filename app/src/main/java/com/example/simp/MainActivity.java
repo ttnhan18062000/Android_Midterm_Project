@@ -11,6 +11,9 @@ import com.example.simp.FloatingMenu.FloatingActionButton;
 import com.example.simp.FloatingMenu.FloatingActionMenu;
 import com.example.simp.FloatingMenu.SubActionButton;
 import com.example.simp.ui.MenuLayout;
+import com.example.simp.utility.AccountInfoSingleton;
+import com.example.simp.utility.NetworkSingleton;
+import com.squareup.picasso.Picasso;
 
 
 import androidx.annotation.Nullable;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity{
     }
     MenuLayout menuLayout;
     View mainLayout;
+    public ImageView menuIcon = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +57,10 @@ public class MainActivity extends AppCompatActivity{
         SubActionButton cameraButton = createSubActionButton(itemBuilder,R.drawable.camera_icon),
                 rulerButton = createSubActionButton(itemBuilder,R.drawable.ruler_icon),
                 editorButton = createSubActionButton(itemBuilder,R.drawable.editor_icon),
-                menuButton = createSubActionButton(itemBuilder, R.drawable.ic_baseline_menu_24);
+                menuButton = createSubActionButton(itemBuilder, R.drawable.ic_baseline_menu_24),
+                informationButton = createSubActionButton(itemBuilder,R.drawable.information_icon);
 
-
+        setNavigationController(informationButton,R.id.actionGlobal_toInformation,true);
         setNavigationController(cameraButton,R.id.actionGlobal_toCamera, true);
         setNavigationController(editorButton,R.id.actionGlobal_toEditor, true);
         setNavigationController(rulerButton,R.id.actionGlobal_toRuler, true);
@@ -64,10 +69,11 @@ public class MainActivity extends AppCompatActivity{
 
 
         //  in Activity Context
-        ImageView icon = new ImageView(menuLayout.getContext()); // Create an icon
-        icon.setImageDrawable(getDrawable(R.drawable.menu_icon));
+
+        menuIcon = new ImageView(menuLayout.getContext()); // Create an icon
+        menuIcon.setImageDrawable(getDrawable(R.drawable.menu_icon));
         actionButton = new FloatingActionButton.Builder(this)
-                .setContentView(icon)
+                .setContentView(menuIcon)
                 .setPosition(9).build();
 
         //MyMenuButton actionButton = (MyMenuButton)LayoutInflater.from(this).inflate(R.layout.my_menu_button_layout,null);
@@ -81,6 +87,7 @@ public class MainActivity extends AppCompatActivity{
                 .addSubActionView(editorButton)
                 .addSubActionView(rulerButton)
                 .addSubActionView(menuButton)
+                .addSubActionView(informationButton)
                 .attachTo(actionButton)
                 .setStartAngle(0)
                 .setEndAngle(90)
@@ -102,6 +109,9 @@ public class MainActivity extends AppCompatActivity{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(actionGlobalID == R.id.actionGlobal_toInformation)
+                    if(AccountInfoSingleton.getAccountInfoHolder().getUserID() == "")
+                        return;
                 Navigation.findNavController(selfActivity,R.id.nav_host_fragment).navigate(actionGlobalID);
                 MainActivity.this.turnActionButton(turnActionButton);
                 MainActivity.this.actionButton.callOnClick();

@@ -79,7 +79,6 @@ public class EditorFragment extends Fragment implements SetRatioDialog.SetRatioD
             public void onColorSelect(int Color) {
                 ivColorPreview.setBackgroundColor(Color);
             }
-
         });
         myPaintView.setOnEndDrawListener(new MyPaintView.OnEndDrawListener() {
             @Override
