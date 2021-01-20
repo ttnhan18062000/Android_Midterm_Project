@@ -330,21 +330,6 @@ public class CameraFragment extends Fragment {
             }
         });
 
-        ImageButton switchButton = (ImageButton)controls.findViewById(R.id.camera_switch_button);
-        if(switchButton != null)
-        {
-            switchButton.setEnabled(false);
-            switchButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(CameraSelector.LENS_FACING_FRONT == lensFacing)
-                        lensFacing = CameraSelector.LENS_FACING_BACK;
-                    else
-                        lensFacing = CameraSelector.LENS_FACING_FRONT;
-                    bindCameraUseCase();
-                }
-            });
-        }
 
         ImageButton photoButton = (ImageButton)controls.findViewById(R.id.photo_view_button);
         photoButton.setOnClickListener(new View.OnClickListener() {

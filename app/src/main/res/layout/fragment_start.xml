@@ -69,6 +69,29 @@
             app:cardCornerRadius="25dp"
             app:cardElevation="10dp"
             android:layout_margin="@dimen/margin_xxsmall"
+            android:id="@+id/card_view_signup">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_background_1">
+
+                <TextView
+                    android:id="@+id/text_view_signup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/starting_menu_signup"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            android:layout_margin="@dimen/margin_xxsmall"
             android:id="@+id/card_view_Tutorial">
             <RelativeLayout
                 android:layout_width="match_parent"
