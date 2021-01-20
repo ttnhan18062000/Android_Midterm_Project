@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import com.example.simp.R;
 import com.example.simp.tutorial_components.MyTutorial;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class TutorialPageFragment extends Fragment {
     private MyTutorial myTutorial = null;
     public static TutorialPageFragment create(MyTutorial tutorial)
@@ -32,5 +34,7 @@ public class TutorialPageFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        GifImageView gif = view.findViewById(R.id.gif_image_view_tutorial);
+        gif.setImageResource(myTutorial.resID);
     }
 }

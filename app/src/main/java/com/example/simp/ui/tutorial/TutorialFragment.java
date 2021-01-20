@@ -59,9 +59,16 @@ public class TutorialFragment extends Fragment {
     }
 
     private void initTutorialList() {
+        ArrayList<Integer> listResID = new ArrayList<Integer>();
+        listResID.add(R.drawable.login_tutorial);
+        listResID.add(R.drawable.signup_tutorial);
+        listResID.add(R.drawable.setting_tutorial);
+        listResID.add(R.drawable.camera_tutorial);
+        listResID.add(R.drawable.editor_tutorial);
+        listResID.add(R.drawable.editor_tutorial_2);
         for(int i = 0; i < 6; i++)
         {
-            MyTutorial myTutorial = new MyTutorial(i);
+            MyTutorial myTutorial = new MyTutorial(i, listResID.get(i));
             tutorialList.add(myTutorial);
         }
     }

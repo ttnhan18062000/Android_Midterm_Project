@@ -56,7 +56,12 @@
             android:id="@+id/actionMain_toLogin"
             app:destination="@id/navigation_login"
             app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_exit"/>
+            app:exitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/actionMain_toSignup"
+            app:destination="@id/navigation_signup"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/actionMain_toSignup"
             app:destination="@id/navigation_signup"
@@ -94,6 +99,18 @@
         <action
             android:id="@+id/actionLogin_toCamera"
             app:destination="@+id/navigation_camera"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_signup"
+        android:name="com.example.simp.ui.start.SignUpFragment"
+        android:label="@string/title_signup"
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/actionSignup_toMain"
+            app:destination="@+id/navigation_main"
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_fade_exit"/>
     </fragment>
