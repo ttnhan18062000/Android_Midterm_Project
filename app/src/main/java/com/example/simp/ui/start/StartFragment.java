@@ -48,6 +48,15 @@ public class StartFragment extends Fragment {
             }
         });
 
+        CardView signup = mFragment.findViewById(R.id.card_view_signup);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.click_button_1));
+                Navigation.findNavController(requireActivity(),R.id.nav_host_fragment).navigate(R.id.actionMain_toSignup);
+            }
+        });
+
         CardView tutorial = mFragment.findViewById(R.id.card_view_Tutorial);
         tutorial.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +89,7 @@ public class StartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)mActivity).setLoginStatus(false);
+
                 ((MainActivity)mActivity).menuIcon.setImageDrawable(getResources().getDrawable(R.drawable.menu_icon));
                 AccountInfoSingleton.getAccountInfoHolder().setupInfo("");
                 refreshFragmentState();

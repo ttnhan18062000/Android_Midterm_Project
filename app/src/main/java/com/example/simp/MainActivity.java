@@ -3,9 +3,11 @@ package com.example.simp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.number.LocalizedNumberFormatter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.simp.FloatingMenu.FloatingActionButton;
 import com.example.simp.FloatingMenu.FloatingActionMenu;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity{
     private static int POPUPWINDOW_SET_RATIO = 203;
 
     Activity selfActivity = this;
-    private FloatingActionButton actionButton = null;
+    public FloatingActionButton actionButton = null;
     public FloatingActionButton getActionButton()
     {
         return actionButton;
@@ -110,8 +112,10 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(actionGlobalID == R.id.actionGlobal_toInformation)
-                    if(AccountInfoSingleton.getAccountInfoHolder().getUserID() == "")
+                    if(AccountInfoSingleton.getAccountInfoHolder().getUserID() == "") {
+                        Toast.makeText(getBaseContext(),"You are logged in as Guest", Toast.LENGTH_LONG).show();
                         return;
+                    }
                 Navigation.findNavController(selfActivity,R.id.nav_host_fragment).navigate(actionGlobalID);
                 MainActivity.this.turnActionButton(turnActionButton);
                 MainActivity.this.actionButton.callOnClick();

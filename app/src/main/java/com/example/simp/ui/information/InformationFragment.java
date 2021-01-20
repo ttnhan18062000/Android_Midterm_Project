@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.audiofx.AcousticEchoCanceler;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.fragment.app.Fragment;
 
@@ -27,8 +31,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.simp.MainActivity;
 import com.example.simp.R;
 import com.example.simp.utility.AccountInfoSingleton;
 import com.example.simp.utility.NetworkSingleton;
@@ -41,9 +47,12 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,7 +93,14 @@ public class InformationFragment extends Fragment {
     }
 
     Button mbutton;
+    Button mUpdateButton;
     ImageView mAvatar;
+    TextInputEditText name;
+    TextInputEditText email;
+    TextInputEditText country;
+    TextInputEditText intro;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -101,6 +117,18 @@ public class InformationFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_information, container, false);
         mbutton = v.findViewById(R.id.UpdateAvatarButton);
+        mUpdateButton = v.findViewById(R.id.btn_update);
+        mUpdateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update(name,email,country,intro);
+                String url = NetworkSingleton.getNetworkInfoHolder().getSERVER() + "/getAvatar?id=" + AccountInfoSingleton.getAccountInfoHolder().getUserID();
+                Log.d("@@@", url);
+                Picasso.get().load(url).into(((MainActivity)requireActivity()).menuIcon);
+                ((MainActivity)requireActivity()).actionButton.postInvalidate();
+                getView().postInvalidate();
+            }
+        });
         mbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,30 +138,41 @@ public class InformationFragment extends Fragment {
             }
         });
 
-        EditText ed = v.findViewById(R.id.Name);
-        ed.setText("abc", TextView.BufferType.EDITABLE);
-        String url = "http://" + NetworkSingleton.getNetworkInfoHolder().getSERVER() + "/info?id=" + AccountInfoSingleton.getAccountInfoHolder().getUserID();
-
-        TextInputEditText name = v.findViewById(R.id.Name);
-        TextInputEditText email = v.findViewById(R.id.Email);
-        TextInputEditText country = v.findViewById(R.id.Where);
-        TextInputEditText intro = v.findViewById(R.id.Intro);
+        name = v.findViewById(R.id.Name);
+        email = v.findViewById(R.id.Email);
+        country = v.findViewById(R.id.Where);
+        intro = v.findViewById(R.id.Intro);
 
         mAvatar = (ImageView) v.findViewById(R.id.UpdateImageView);
 
-        SharedPreferences sh = getContext().getSharedPreferences("Info", Context.MODE_PRIVATE);
-        name.setText(sh.getString("name", ""));
-        email.setText(sh.getString("email", ""));
-        country.setText(sh.getString("country", ""));
-        intro.setText(sh.getString("intro", ""));
 
-        url = NetworkSingleton.getNetworkInfoHolder().getSERVER() + "/getAvatar?id=" + AccountInfoSingleton.getAccountInfoHolder().getUserID();
-        Log.d("@@@", url);
-        Picasso.get().load(url).into(mAvatar);
 
         return v;
-
     }
+
+    private void getInformation() {
+        String url = NetworkSingleton.getNetworkInfoHolder().getSERVER() + "/info?id=" + AccountInfoSingleton.getAccountInfoHolder().getUserID();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    name.setText(response.getString("name"));
+                    email.setText(response.getString("email"));
+                    country.setText(response.getString("country"));
+                    intro.setText(response.getString("intro"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        VolleySingleton.getInstance(getContext()).addToRequestQueue(jsonObjectRequest);
+    }
+
     private void update(TextInputEditText name, TextInputEditText email, TextInputEditText country, TextInputEditText intro){
         String sName = name.getText().toString();
         String sEmail = email.getText().toString();
@@ -169,7 +208,6 @@ public class InformationFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -234,5 +272,28 @@ public class InformationFragment extends Fragment {
         //queue.add(stringRequest);
         VolleySingleton.getInstance(getContext()).addToRequestQueue(multipartRequest);
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            Uri targetUri = data.getData();
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(getContext().getContentResolver().openInputStream(targetUri));
+                mAvatar.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                //TODO: action
+            }
+        }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getInformation();
+        String url = NetworkSingleton.getNetworkInfoHolder().getSERVER() + "/getAvatar?id=" + AccountInfoSingleton.getAccountInfoHolder().getUserID();
+        Log.d("@@@", url);
+        Picasso.get().load(url).into(mAvatar);
+    }
 }

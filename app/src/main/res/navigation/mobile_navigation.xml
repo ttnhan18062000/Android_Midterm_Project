@@ -58,6 +58,11 @@
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_fade_exit"/>
         <action
+            android:id="@+id/actionMain_toSignup"
+            app:destination="@id/navigation_signup"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+        <action
             android:id="@+id/actionMain_toSetting"
             app:destination="@id/navigation_setting"
             app:enterAnim="@anim/fragment_fade_enter"
@@ -174,4 +179,15 @@
         android:name="com.example.simp.ui.information.InformationFragment"
         android:label="Information"
         tools:layout="@layout/fragment_information"/>
+    <fragment
+        android:id="@+id/navigation_signup"
+        android:name="com.example.simp.ui.start.SignUpFragment"
+        android:label="@string/title_signup"
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/actionSignup_toMain"
+            app:destination="@+id/navigation_main"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
 </navigation>

@@ -53,4 +53,7 @@
     <string name="title_setting">Cài đặt</string>
     <string name="setting_language">Ngôn ngữ</string>
     <string name="setting_theme">Chủ đề</string>
+    <string name="title_signup">Đăng ký</string>
+    <string name="starting_menu_signup">Đăng ký</string>
+    <string name="login_name">tên</string>
 </resources>
